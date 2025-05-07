@@ -4,387 +4,531 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Cryptography</title>
-  <link rel="stylesheet" href="style2.css">
-     <link rel="shortcut icon" href="https://www.freepnglogos.com/uploads/warriors-png-logo/reclaiming-warrior-png-logo-10.png" type="image/x-icon" />
- 
+  <link rel="shortcut icon" href="https://www.freepnglogos.com/uploads/warriors-png-logo/reclaiming-warrior-png-logo-10.png" type="image/x-icon" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background-color: #1a1a1a;
+      color: #ffffff;
+      line-height: 1.6;
+    }
+
+    .sidebar {
+      width: 250px;
+      background-color: #2a2a2a;
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100%;
+      padding: 20px;
+      overflow-y: auto;
+    }
+
+    .sidebar h2 {
+      color: #ffffff;
+      font-size: 1.5em;
+      margin-bottom: 20px;
+    }
+
+    .dropdown {
+      margin-bottom: 10px;
+    }
+
+    .dropdown-btn {
+      background-color: #3a3a3a;
+      color: #00cc00;
+      padding: 10px;
+      font-size: 1.1em;
+      border: none;
+      width: 100%;
+      text-align: left;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .dropdown-btn:hover {
+      background-color: #4a4a4a;
+    }
+
+    .dropdown-content {
+      display: none;
+      background-color: #3a3a3a;
+      padding: 10px;
+    }
+
+    .dropdown-content a {
+      color: #cccccc;
+      padding: 5px 0;
+      display: block;
+      text-decoration: none;
+    }
+
+    .dropdown-content a:hover {
+      color: #00cc00;
+    }
+
+    .dropdown-content.show {
+      display: block;
+    }
+
+    .main-content {
+      margin-left: 270px;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    header {
+      background-color: #333;
+      padding: 20px;
+      text-align: center;
+      border-bottom: 2px solid #00cc00;
+    }
+
+    header h1 {
+      font-size: 2.5em;
+      margin-bottom: 10px;
+    }
+
+    header p {
+      font-size: 1.2em;
+      color: #cccccc;
+    }
+
+    section {
+      padding: 40px 0;
+    }
+
+    section h2 {
+      font-size: 2em;
+      margin-bottom: 20px;
+      color: #00cc00;
+    }
+
+    .intro-text {
+      background-color: #2a2a2a;
+      padding: 15px;
+      border-radius: 5px;
+      margin-bottom: 20px;
+      border: 1px solid #00cc00;
+    }
+
+    .intro-text p {
+      font-size: 1em;
+      color: #ffffff;
+      margin-bottom: 10px;
+    }
+
+    .intro-text strong {
+      color: #00cc00;
+      font-size: 1.1em;
+    }
+
+    .feature, .range {
+      background-color: #2a2a2a;
+      padding: 20px;
+      border-radius: 5px;
+      border: 1px solid #00cc00;
+      margin-bottom: 20px;
+    }
+
+    .feature h3, .range h3 {
+      font-size: 1.5em;
+      margin-bottom: 10px;
+      color: #00cc00;
+    }
+
+    .feature p, .range p {
+      margin-bottom: 15px;
+    }
+
+    .range img {
+      width: 100%;
+      max-width: 600px;
+      height: 300px;
+      object-fit: cover;
+      border-radius: 10px;
+      margin: 20px auto;
+      display: block;
+    }
+
+    #contact form {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      max-width: 500px;
+      margin: 0 auto;
+    }
+
+    #contact input, #contact textarea {
+      padding: 10px;
+      background-color: #3a3a3a;
+      border: 1px solid #00cc00;
+      color: #ffffff;
+      border-radius: 5px;
+    }
+
+    #contact button {
+      padding: 10px;
+      background-color: #00cc00;
+      color: #1a1a1a;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    #contact button:hover {
+      background-color: #00b300;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      background-color: #333;
+      border-top: 2px solid #00cc00;
+    }
+
+    @media (max-width: 768px) {
+      .sidebar {
+        width: 200px;
+      }
+
+      .main-content {
+        margin-left: 220px;
+      }
+
+      .range img {
+        height: 150px;
+        max-width: 100%;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .sidebar {
+        width: 100%;
+        position: relative;
+        height: auto;
+      }
+
+      .main-content {
+        margin-left: 0;
+      }
+
+      .range img {
+        height: 120px;
+      }
+    }
+
+    #contact h2 {
+      text-align: center;
+      color: #00cc00;
+      margin-bottom: 20px;
+    }
+
+    .question-title {
+      color: #00ccff;
+      font-weight: bold;
+      font-size: 1.2em;
+      margin-top: 15px;
+      margin-bottom: 5px;
+    }
+  </style>
 </head>
 <body>
-  <!-- Header Section -->
-  <header>
-    <div class="container">
-      <h1>Cryptography</h1>
-      <p>Explore the role of cryptography in safeguarding digital communications and securing sensitive data.</p>
+  <div class="sidebar">
+    <h2>Explore Cryptography</h2>
+    <div class="dropdown">
+      <button class="dropdown-btn">Cryptography Topics <span>▼</span></button>
+      <div class="dropdown-content">
+        <a href="#data-confidentiality">Data Confidentiality</a>
+        <a href="#integrity-assurance">Integrity Assurance</a>
+        <a href="#authentication">Authentication</a>
+        <a href="#non-repudiation">Non-Repudiation</a>
+        <a href="#symmetric-encryption">Symmetric Encryption</a>
+        <a href="#asymmetric-encryption">Asymmetric Encryption</a>
+        <a href="#hashing-algorithms">Hashing Algorithms</a>
+        <a href="#digital-signatures">Digital Signatures</a>
+      </div>
     </div>
-  </header>
+  </div>
 
-  <!-- Features Section -->
-  <section id="features">
-    <div class="container">
-      <h2>Why Cryptography is Essential in Cybersecurity?</h2>
-      <div class="features-grid">
-        <div class="feature">
+  <div class="main-content">
+    <header>
+      <div class="container">
+        <h1>Cryptography</h1>
+        <p>Explore the role of cryptography in safeguarding digital communications and securing sensitive data.</p>
+      </div>
+    </header>
+
+    <section id="features">
+      <div class="container">
+        <h2>Why Cryptography is Essential in Cybersecurity?</h2>
+        <div class="intro-text">
+          <p>Cryptography plays a pivotal role in securing digital communications and protecting sensitive data from unauthorized access. It ensures confidentiality, integrity, authentication, and non-repudiation in an increasingly interconnected world.</p>
+          <p><strong>Why is Cryptography Important?</strong> With the rise of cyber threats, cryptography provides the foundational tools to secure data, authenticate users, and ensure the trustworthiness of digital transactions.</p>
+        </div>
+
+        <div class="feature" id="data-confidentiality">
           <h3>Data Confidentiality</h3>
-          <p>Key Concepts of Data Confidentiality
-Encryption: The process of converting plaintext into ciphertext using an encryption algorithm and a key. Only those with the correct decryption key can convert the ciphertext back into readable plaintext.
-
-Symmetric Encryption: Uses the same key for both encryption and decryption. Examples include AES (Advanced Encryption Standard) and DES (Data Encryption Standard).
-
-Asymmetric Encryption: Uses a pair of keys – a public key for encryption and a private key for decryption. Examples include RSA (Rivest-Shamir-Adleman) and ECC (Elliptic Curve Cryptography).
-
-Access Control: Ensures that only authorized users can access sensitive data. This involves implementing authentication mechanisms, such as passwords, biometrics, and multi-factor authentication (MFA), to verify the identity of users.
-
-Data Masking: A technique used to hide sensitive data by replacing it with fictional data that looks real. This is often used in non-production environments to protect sensitive information while allowing testing and development.
-
-Tokenization: The process of replacing sensitive data with unique identification symbols (tokens) that retain essential information without compromising security. The original data is stored securely, and the tokens are used in its place.
-
-Benefits of Data Confidentiality
-Protection from Unauthorized Access: Ensures that sensitive information is only accessible to those with the proper authorization, preventing data breaches and unauthorized disclosures.
-
-Compliance with Regulations: Helps organizations comply with data protection regulations, such as GDPR, HIPAA, and PCI DSS, which require the protection of sensitive information.
-
+          <h4 class="question-title">Key Concepts of Data Confidentiality</h4>
+          <p>Encryption: The process of converting plaintext into ciphertext using an encryption algorithm and a key. Only those with the correct decryption key can convert the ciphertext back into readable plaintext.<br>
+Symmetric Encryption: Uses the same key for both encryption and decryption. Examples include AES (Advanced Encryption Standard) and DES (Data Encryption Standard).<br>
+Asymmetric Encryption: Uses a pair of keys – a public key for encryption and a private key for decryption. Examples include RSA (Rivest-Shamir-Adleman) and ECC (Elliptic Curve Cryptography).<br>
+Access Control: Ensures that only authorized users can access sensitive data. This involves implementing authentication mechanisms, such as passwords, biometrics, and multi-factor authentication (MFA), to verify the identity of users.<br>
+Data Masking: A technique used to hide sensitive data by replacing it with fictional data that looks real. This is often used in non-production environments to protect sensitive information while allowing testing and development.<br>
+Tokenization: The process of replacing sensitive data with unique identification symbols (tokens) that retain essential information without compromising security. The original data is stored securely, and the tokens are used in its place.</p>
+          <h4 class="question-title">Benefits of Data Confidentiality</h4>
+          <p>Protection from Unauthorized Access: Ensures that sensitive information is only accessible to those with the proper authorization, preventing data breaches and unauthorized disclosures.<br>
+Compliance with Regulations: Helps organizations comply with data protection regulations, such as GDPR, HIPAA, and PCI DSS, which require the protection of sensitive information.<br>
 Maintaining Trust: Protecting data confidentiality helps maintain the trust of customers, partners, and stakeholders by demonstrating a commitment to data security.</p>
         </div>
-        <div class="feature">
+
+        <div class="feature" id="integrity-assurance">
           <h3>Integrity Assurance</h3>
-          <p>Integrity assurance in cryptography ensures that data remains unchanged and unaltered during storage or transmission. This is crucial for maintaining the trustworthiness and reliability of information. Here’s a detailed explanation of how integrity assurance works in cryptography:
-
-Key Concepts of Integrity Assurance
-Hash Functions:
-
-Definition: A hash function takes an input (or message) and produces a fixed-size string of bytes, typically a digest that appears random. Any change to the input, even a small one, results in a significantly different hash value.
-
-Examples: Common hash functions include SHA-256 (Secure Hash Algorithm) and MD5 (Message Digest Algorithm).
-
-Usage: Hash functions are used to verify data integrity by comparing the hash value of the original data with the hash value of the received data. If the values match, the data has not been altered.
-
-Message Authentication Codes (MACs):
-
-Definition: A MAC is a short piece of information used to authenticate a message and ensure its integrity. It is generated using a secret key and a hash function.
-
-Usage: MACs are used to verify both the integrity and authenticity of a message. The sender generates a MAC using the message and a secret key, and the receiver verifies it using the same key.
-
-Digital Signatures:
-
-Definition: A digital signature is a cryptographic technique that provides both integrity and authenticity. It involves creating a unique signature using the sender's private key and a hash of the message.
-
-Usage: The receiver can verify the signature using the sender's public key. If the signature is valid, it confirms that the message has not been altered and that it was sent by the legitimate sender.
-
-Benefits of Integrity Assurance
-Data Integrity: Ensures that data remains unchanged and unaltered during storage or transmission, maintaining its accuracy and reliability.
-
-Trust and Authenticity: Provides assurance that the data comes from a legitimate source and has not been tampered with.
-
+          <p>Integrity assurance in cryptography ensures that data remains unchanged and unaltered during storage or transmission. This is crucial for maintaining the trustworthiness and reliability of information. Here’s a detailed explanation of how integrity assurance works in cryptography:</p>
+          <h4 class="question-title">Key Concepts of Integrity Assurance</h4>
+          <p><strong>Hash Functions:</strong><br>
+Definition: A hash function takes an input (or message) and produces a fixed-size string of bytes, typically a digest that appears random. Any change to the input, even a small one, results in a significantly different hash value.<br>
+Examples: Common hash functions include SHA-256 (Secure Hash Algorithm) and MD5 (Message Digest Algorithm).<br>
+Usage: Hash functions are used to verify data integrity by comparing the hash value of the original data with the hash value of the received data. If the values match, the data has not been altered.</p>
+          <p><strong>Message Authentication Codes (MACs):</strong><br>
+Definition: A MAC is a short piece of information used to authenticate a message and ensure its integrity. It is generated using a secret key and a hash function.<br>
+Usage: MACs are used to verify both the integrity and authenticity of a message. The sender generates a MAC using the message and a secret key, and the receiver verifies it using the same key.</p>
+          <p><strong>Digital Signatures:</strong><br>
+Definition: A digital signature is a cryptographic technique that provides both integrity and authenticity. It involves creating a unique signature using the sender's private key and a hash of the message.<br>
+Usage: The receiver can verify the signature using the sender's public key. If the signature is valid, it confirms that the message has not been altered and that it was sent by the legitimate sender.</p>
+          <h4 class="question-title">Benefits of Integrity Assurance</h4>
+          <p>Data Integrity: Ensures that data remains unchanged and unaltered during storage or transmission, maintaining its accuracy and reliability.<br>
+Trust and Authenticity: Provides assurance that the data comes from a legitimate source and has not been tampered with.<br>
 Compliance: Helps organizations comply with regulatory requirements that mandate data integrity and security.</p>
         </div>
-        <div class="feature">
+
+        <div class="feature" id="authentication">
           <h3>Authentication</h3>
-          <p>Authentication in cryptography is the process of verifying the identity of a user, device, or entity before granting access to sensitive information or systems. It ensures that only authorized individuals or systems can access protected resources. Here's a detailed explanation:
-
-Key Concepts of Authentication in Cryptography
-Authentication Factors:
-
-Something You Know: This includes passwords, PINs, or answers to security questions. It's information that only the user should know.
-
-Something You Have: This includes physical devices like smart cards, security tokens, or mobile phones used for two-factor authentication (2FA).
-
-Something You Are: This includes biometric data such as fingerprints, facial recognition, or iris scans.
-
-Multi-Factor Authentication (MFA):
-
-Definition: MFA requires two or more authentication factors to verify a user's identity. For example, a user might need to enter a password (something they know) and a code sent to their mobile phone (something they have).
-
-Benefits: MFA significantly enhances security by making it more difficult for attackers to gain unauthorized access.
-
-Public Key Infrastructure (PKI):
-
-Definition: PKI is a framework that uses asymmetric encryption to provide secure communication and authentication. It involves the use of public and private key pairs.
-
-Digital Certificates: PKI relies on digital certificates issued by Certificate Authorities (CAs) to verify the identity of users and devices. These certificates bind a public key to an entity's identity.
-
-Digital Signatures:
-
-Definition: Digital signatures use asymmetric encryption to verify the authenticity and integrity of a message or document. The sender signs the message with their private key, and the recipient verifies the signature using the sender's public key.
-
-Usage: Digital signatures provide assurance that the message has not been altered and that it comes from a legitimate source.
-
-Benefits of Authentication in Cryptography
-Enhanced Security: Authentication ensures that only authorized users can access sensitive information, reducing the risk of unauthorized access and data breaches.
-
-Trust and Integrity: Authentication mechanisms, such as digital signatures, provide assurance that the data comes from a legitimate source and has not been tampered with.
-
+          <p>Authentication in cryptography is the process of verifying the identity of a user, device, or entity before granting access to sensitive information or systems. It ensures that only authorized individuals or systems can access protected resources. Here's a detailed explanation:</p>
+          <h4 class="question-title">Key Concepts of Authentication in Cryptography</h4>
+          <p><strong>Authentication Factors:</strong><br>
+Something You Know: This includes passwords, PINs, or answers to security questions. It's information that only the user should know.<br>
+Something You Have: This includes physical devices like smart cards, security tokens, or mobile phones used for two-factor authentication (2FA).<br>
+Something You Are: This includes biometric data such as fingerprints, facial recognition, or iris scans.</p>
+          <p><strong>Multi-Factor Authentication (MFA):</strong><br>
+Definition: MFA requires two or more authentication factors to verify a user's identity. For example, a user might need to enter a password (something they know) and a code sent to their mobile phone (something they have).<br>
+Benefits: MFA significantly enhances security by making it more difficult for attackers to gain unauthorized access.</p>
+          <p><strong>Public Key Infrastructure (PKI):</strong><br>
+Definition: PKI is a framework that uses asymmetric encryption to provide secure communication and authentication. It involves the use of public and private key pairs.<br>
+Digital Certificates: PKI relies on digital certificates issued by Certificate Authorities (CAs) to verify the identity of users and devices. These certificates bind a public key to an entity's identity.</p>
+          <p><strong>Digital Signatures:</strong><br>
+Definition: Digital signatures use asymmetric encryption to verify the authenticity and integrity of a message or document. The sender signs the message with their private key, and the recipient verifies the signature using the sender's public key.<br>
+Usage: Digital signatures provide assurance that the message has not been altered and that it comes from a legitimate source.</p>
+          <h4 class="question-title">Benefits of Authentication in Cryptography</h4>
+          <p>Enhanced Security: Authentication ensures that only authorized users can access sensitive information, reducing the risk of unauthorized access and data breaches.<br>
+Trust and Integrity: Authentication mechanisms, such as digital signatures, provide assurance that the data comes from a legitimate source and has not been tampered with.<br>
 Compliance: Implementing robust authentication measures helps organizations comply with regulatory requirements for data protection and security.</p>
         </div>
-        <div class="feature">
+
+        <div class="feature" id="non-repudiation">
           <h3>Non-Repudiation</h3>
-          <p>Non-repudiation in cryptography ensures that a sender cannot deny having sent a message and that the recipient cannot deny having received it. This concept is crucial for maintaining the integrity and authenticity of digital communications. Here's a detailed explanation:
-
-Key Concepts of Non-Repudiation
-Digital Signatures:
-
-Definition: A digital signature is a cryptographic technique that provides proof of the origin, integrity, and authenticity of a message. It involves creating a unique signature using the sender's private key and a hash of the message.
-
-Usage: The sender signs the message with their private key, and the recipient verifies the signature using the sender's public key. If the signature is valid, it confirms that the message has not been altered and that it was sent by the legitimate sender.
-
-Public Key Infrastructure (PKI):
-
-Definition: PKI is a framework that uses asymmetric encryption to provide secure communication and authentication. It involves the use of public and private key pairs.
-
-Digital Certificates: PKI relies on digital certificates issued by Certificate Authorities (CAs) to verify the identity of users and devices. These certificates bind a public key to an entity's identity, ensuring that the public key belongs to the legitimate owner.
-
-Hash Functions:
-
-Definition: A hash function takes an input (or message) and produces a fixed-size string of bytes, typically a digest that appears random. Any change to the input, even a small one, results in a significantly different hash value.
-
-Usage: Hash functions are used to verify data integrity by comparing the hash value of the original data with the hash value of the received data. If the values match, the data has not been altered.
-
-Benefits of Non-Repudiation
-Accountability: Ensures that parties involved in a communication cannot deny their actions, providing a clear record of transactions and communications.
-
-Trust and Integrity: Enhances trust between parties by providing proof of the origin and integrity of messages.
-
+          <p>Non-repudiation in cryptography ensures that a sender cannot deny having sent a message and that the recipient cannot deny having received it. This concept is crucial for maintaining the integrity and authenticity of digital communications. Here's a detailed explanation:</p>
+          <h4 class="question-title">Key Concepts of Non-Repudiation</h4>
+          <p><strong>Digital Signatures:</strong><br>
+Definition: A digital signature is a cryptographic technique that provides proof of the origin, integrity, and authenticity of a message. It involves creating a unique signature using the sender's private key and a hash of the message.<br>
+Usage: The sender signs the message with their private key, and the recipient verifies the signature using the sender's public key. If the signature is valid, it confirms that the message has not been altered and that it was sent by the legitimate sender.</p>
+          <p><strong>Public Key Infrastructure (PKI):</strong><br>
+Definition: PKI is a framework that uses asymmetric encryption to provide secure communication and authentication. It involves the use of public and private key pairs.<br>
+Digital Certificates: PKI relies on digital certificates issued by Certificate Authorities (CAs) to verify the identity of users and devices. These certificates bind a public key to an entity's identity, ensuring that the public key belongs to the legitimate owner.</p>
+          <p><strong>Hash Functions:</strong><br>
+Definition: A hash function takes an input (or message) and produces a fixed-size string of bytes, typically a digest that appears random. Any change to the input, even a small one, results in a significantly different hash value.<br>
+Usage: Hash functions are used to verify data integrity by comparing the hash value of the original data with the hash value of the received data. If the values match, the data has not been altered.</p>
+          <h4 class="question-title">Benefits of Non-Repudiation</h4>
+          <p>Accountability: Ensures that parties involved in a communication cannot deny their actions, providing a clear record of transactions and communications.<br>
+Trust and Integrity: Enhances trust between parties by providing proof of the origin and integrity of messages.<br>
 Legal Compliance: Non-repudiation is often required for legal and regulatory compliance, ensuring that digital communications and transactions are legally binding.</p>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
     <section id="ranges">
-    <div class="container">
-      <h2>Key Cryptography Techniques</h2>
-      <div class="ranges-grid">
-        <div class="range">
-          <img src=" https://www.trentonsystems.com/hs-fs/hubfs/symmetric%20cryptography%20process.jpg?width=1002&name=symmetric%20cryptography%20process.jpg" alt="Symmetric Encryption">
+      <div class="container">
+        <h2>Key Cryptography Techniques</h2>
+        <div class="intro-text">
+          <p>Cryptography techniques are essential for securing digital communications and data. These methods provide the tools needed to ensure confidentiality, integrity, authentication, and non-repudiation in various applications.</p>
+          <p><strong>Why are These Techniques Important?</strong> Each technique addresses specific security needs, making them critical components of a comprehensive cybersecurity strategy.</p>
+        </div>
+
+        <div class="range" id="symmetric-encryption">
+          <img src="https://www.trentonsystems.com/hs-fs/hubfs/symmetric%20cryptography%20process.jpg?width=1002&name=symmetric%20cryptography%20process.jpg" alt="Symmetric Encryption">
           <h3>Symmetric Encryption</h3>
-          <p>Symmetric encryption is a type of cryptographic technique where the same key is used for both encryption and decryption of data. This method is known for its simplicity and efficiency, making it widely used for securing data in various applications. Here's a detailed explanation:
-
-Key Concepts of Symmetric Encryption
-Encryption and Decryption:
-
-Encryption: The process of converting plaintext (readable data) into ciphertext (unreadable data) using an encryption algorithm and a secret key.
-
-Decryption: The process of converting ciphertext back into plaintext using the same secret key and the corresponding decryption algorithm.
-
-Secret Key:
-
-The secret key is a shared key known only to the sender and the receiver. It must be kept confidential to ensure the security of the encrypted data.
-
-Algorithms:
-
-AES (Advanced Encryption Standard): A widely used symmetric encryption algorithm known for its speed and security. It supports key sizes of 128, 192, and 256 bits.
-
-DES (Data Encryption Standard): An older symmetric encryption algorithm that uses a 56-bit key. It has largely been replaced by AES due to its vulnerability to brute-force attacks.
-
-3DES (Triple DES): An enhancement of DES that applies the DES algorithm three times with different keys, providing a higher level of security.
-
-Benefits of Symmetric Encryption
-Efficiency: Symmetric encryption algorithms are generally faster and require less computational power compared to asymmetric encryption algorithms.
-
-Simplicity: The use of a single key for both encryption and decryption simplifies the encryption process.
-
-Challenges of Symmetric Encryption
-Key Distribution: Securely distributing and managing the secret key between the sender and receiver can be challenging, especially in large-scale systems.
-
-Scalability: In environments with many users, the number of keys required can become unmanageable, as each pair of users needs a unique key.
-
-Use Cases of Symmetric Encryption
-Data Encryption: Symmetric encryption is commonly used to encrypt data at rest, such as files stored on a hard drive or in a database.
-
-Secure Communication: It is used to secure communication channels, such as VPNs (Virtual Private Networks) and SSL/TLS (Secure Sockets Layer/Transport Layer Security) connections.
-
+          <p>Symmetric encryption is a type of cryptographic technique where the same key is used for both encryption and decryption of data. This method is known for its simplicity and efficiency, making it widely used for securing data in various applications. Here's a detailed explanation:</p>
+          <h4 class="question-title">Key Concepts of Symmetric Encryption</h4>
+          <p><strong>Encryption and Decryption:</strong><br>
+Encryption: The process of converting plaintext (readable data) into ciphertext (unreadable data) using an encryption algorithm and a secret key.<br>
+Decryption: The process of converting ciphertext back into plaintext using the same secret key and the corresponding decryption algorithm.</p>
+          <p><strong>Secret Key:</strong><br>
+The secret key is a shared key known only to the sender and the receiver. It must be kept confidential to ensure the security of the encrypted data.</p>
+          <p><strong>Algorithms:</strong><br>
+AES (Advanced Encryption Standard): A widely used symmetric encryption algorithm known for its speed and security. It supports key sizes of 128, 192, and 256 bits.<br>
+DES (Data Encryption Standard): An older symmetric encryption algorithm that uses a 56-bit key. It has largely been replaced by AES due to its vulnerability to brute-force attacks.<br>
+3DES (Triple DES): An enhancement of DES that applies the DES algorithm three times with different keys, providing a higher level of security.</p>
+          <h4 class="question-title">Benefits of Symmetric Encryption</h4>
+          <p>Efficiency: Symmetric encryption algorithms are generally faster and require less computational power compared to asymmetric encryption algorithms.<br>
+Simplicity: The use of a single key for both encryption and decryption simplifies the encryption process.</p>
+          <h4 class="question-title">Challenges of Symmetric Encryption</h4>
+          <p>Key Distribution: Securely distributing and managing the secret key between the sender and receiver can be challenging, especially in large-scale systems.<br>
+Scalability: In environments with many users, the number of keys required can become unmanageable, as each pair of users needs a unique key.</p>
+          <h4 class="question-title">Use Cases of Symmetric Encryption</h4>
+          <p>Data Encryption: Symmetric encryption is commonly used to encrypt data at rest, such as files stored on a hard drive or in a database.<br>
+Secure Communication: It is used to secure communication channels, such as VPNs (Virtual Private Networks) and SSL/TLS (Secure Sockets Layer/Transport Layer Security) connections.<br>
 Authentication: Symmetric encryption can be used in authentication protocols to verify the identity of users and devices.</p>
         </div>
-        <div class="range">
+
+        <div class="range" id="asymmetric-encryption">
           <img src="https://bitpanda-academy.imgix.net/450037a5-144d-44ef-9db1-7fe7ce1f433d/bitpanda-academy-expert-20-what-is-asymmetric-encryption-infographic.png?auto=compress%2Cformat&fit=min&fm=jpg&q=80&w=1800" alt="Asymmetric Encryption">
           <h3>Asymmetric Encryption</h3>
-          <p>Asymmetric encryption, also known as public-key cryptography, is a type of encryption that uses a pair of keys: a public key and a private key. These keys are mathematically related, but it is computationally infeasible to derive the private key from the public key. Here's a detailed explanation:
-
-Key Concepts of Asymmetric Encryption
-Public Key:
-
-Definition: The public key is used to encrypt data and can be shared openly. Anyone can use the public key to encrypt a message intended for the owner of the corresponding private key.
-
-Usage: Public keys are distributed widely and can be used by anyone to send encrypted messages to the key owner.
-
-Private Key:
-
-Definition: The private key is used to decrypt data that has been encrypted with the corresponding public key. It must be kept secret and secure.
-
-Usage: Only the owner of the private key can decrypt messages encrypted with their public key, ensuring the confidentiality of the communication.
-
-How Asymmetric Encryption Works
-Encryption:
-
-The sender uses the recipient's public key to encrypt the message.
-
-The encrypted message (ciphertext) can only be decrypted by the recipient's private key.
-
-Decryption:
-
-The recipient uses their private key to decrypt the message.
-
-The decrypted message (plaintext) is now readable by the recipient.
-
-Common Asymmetric Encryption Algorithms
-RSA (Rivest-Shamir-Adleman):
-
-Overview: One of the most widely used asymmetric encryption algorithms. It is based on the mathematical difficulty of factoring large prime numbers.
-
-Usage: Commonly used for secure data transmission, digital signatures, and key exchange.
-
-ECC (Elliptic Curve Cryptography):
-
-Overview: An encryption technique that uses the mathematics of elliptic curves to provide strong security with smaller key sizes compared to RSA.
-
-Usage: Ideal for mobile devices and environments with limited computational resources due to its efficiency.
-
-Benefits of Asymmetric Encryption
-Security: Provides strong security by ensuring that only the intended recipient can decrypt the message.
-
-Key Distribution: Simplifies key distribution since the public key can be shared openly without compromising security.
-
-Digital Signatures: Enables the creation of digital signatures, which provide authentication, integrity, and non-repudiation.
-
-Challenges of Asymmetric Encryption
-Performance: Asymmetric encryption is generally slower and more computationally intensive than symmetric encryption.</p>
+          <p>Asymmetric encryption, also known as public-key cryptography, is a type of encryption that uses a pair of keys: a public key and a private key. These keys are mathematically related, but it is computationally infeasible to derive the private key from the public key. Here's a detailed explanation:</p>
+          <h4 class="question-title">Key Concepts of Asymmetric Encryption</h4>
+          <p><strong>Public Key:</strong><br>
+Definition: The public key is used to encrypt data and can be shared openly. Anyone can use the public key to encrypt a message intended for the owner of the corresponding private key.<br>
+Usage: Public keys are distributed widely and can be used by anyone to send encrypted messages to the key owner.</p>
+          <p><strong>Private Key:</strong><br>
+Definition: The private key is used to decrypt data that has been encrypted with the corresponding public key. It must be kept secret and secure.<br>
+Usage: Only the owner of the private key can decrypt messages encrypted with their public key, ensuring the confidentiality of the communication.</p>
+          <h4 class="question-title">How Asymmetric Encryption Works</h4>
+          <p><strong>Encryption:</strong><br>
+The sender uses the recipient's public key to encrypt the message.<br>
+The encrypted message (ciphertext) can only be decrypted by the recipient's private key.</p>
+          <p><strong>Decryption:</strong><br>
+The recipient uses their private key to decrypt the message.<br>
+The decrypted message (plaintext) is now readable by the recipient.</p>
+          <h4 class="question-title">Common Asymmetric Encryption Algorithms</h4>
+          <p>RSA (Rivest-Shamir-Adleman):<br>
+Overview: One of the most widely used asymmetric encryption algorithms. It is based on the mathematical difficulty of factoring large prime numbers.<br>
+Usage: Commonly used for secure data transmission, digital signatures, and key exchange.</p>
+          <p>ECC (Elliptic Curve Cryptography):<br>
+Overview: An encryption technique that uses the mathematics of elliptic curves to provide strong security with smaller key sizes compared to RSA.<br>
+Usage: Ideal for mobile devices and environments with limited computational resources due to its efficiency.</p>
+          <h4 class="question-title">Benefits of Asymmetric Encryption</h4>
+          <p>Security: Provides strong security by ensuring that only the intended recipient can decrypt the message.<br>
+Key Distribution: Simplifies key distribution since the public key can be shared openly without compromising security.<br>
+Digital Signatures: Enables the creation of digital signatures, which provide authentication, integrity, and non-repudiation.</p>
+          <h4 class="question-title">Challenges of Asymmetric Encryption</h4>
+          <p>Performance: Asymmetric encryption is generally slower and more computationally intensive than symmetric encryption.</p>
         </div>
-        <div class="range">
+
+        <div class="range" id="hashing-algorithms">
           <img src="https://cryptolegacy.ai/wp-content/uploads/1_VDRVI-0EfU2v7c43k9IIeA.png" alt="Hashing Algorithms">
           <h3>Hashing Algorithms</h3>
-          <p>Hashing algorithms in cryptography are essential tools used to ensure data integrity and security. They transform input data of any size into a fixed-size string of characters, which is typically a hash value or hash code. Here's a detailed explanation:
-
-Key Concepts of Hashing Algorithms
-Hash Function:
-
-Definition: A hash function takes an input (or message) and produces a fixed-size string of bytes. The output, known as the hash value or digest, is unique to each unique input.
-
-Properties: Hash functions are designed to be fast and efficient, producing a hash value quickly.
-
-Deterministic:
-
-Definition: A hash function is deterministic, meaning that the same input will always produce the same hash value.
-
-Usage: This property ensures consistency and reliability in data verification processes.
-
-Pre-image Resistance:
-
-Definition: It should be computationally infeasible to reverse-engineer the original input from its hash value.
-
-Usage: This property ensures that the hash value does not reveal any information about the original data.
-
-Collision Resistance:
-
-Definition: It should be highly unlikely for two different inputs to produce the same hash value.
-
-Usage: This property ensures the uniqueness of hash values, which is crucial for data integrity.
-
-Avalanche Effect:
-
-Definition: A small change in the input should produce a significantly different hash value.
-
-Usage: This property ensures that even minor alterations in the input data are detectable.
-
-Common Hashing Algorithms
-MD5 (Message Digest Algorithm 5):
-
-Overview: Produces a 128-bit hash value. It was widely used but is now considered insecure due to vulnerabilities that allow for collision attacks.
-
-Usage: Still used for checksums and non-cryptographic purposes.
-
-SHA-1 (Secure Hash Algorithm 1):
-
-Overview: Produces a 160-bit hash value. It has been deprecated for most cryptographic uses due to vulnerabilities.
-
-Usage: Previously used in SSL certificates and digital signatures.
-
-SHA-256 (Secure Hash Algorithm 256-bit):
-
-Overview: Part of the SHA-2 family, it produces a 256-bit hash value and is widely used for its strong security properties.
-
-Usage: Commonly used in blockchain technology, digital signatures, and SSL certificates.
-
-SHA-3 (Secure Hash Algorithm 3):
-
-Overview: The latest member of the Secure Hash Algorithm family, designed to provide strong security even against future threats.
-
-Usage: Used in various cryptographic applications where high security is required.
-
-Applications of Hashing Algorithms
-Data Integrity:
-
-Usage: Hashing ensures that data has not been altered during transmission or storage. By comparing the hash values before and after transmission, any changes can be detected.
-
-Digital Signatures:
-
-Usage: Hashing is used to create digital signatures, which verify the authenticity and integrity of a message or document.
-
-Password Storage:
-
-Usage: Passwords are hashed before being stored in databases. This ensures that even if the database is compromised, the actual passwords are not exposed.
-
-Blockchain:
-
+          <p>Hashing algorithms in cryptography are essential tools used to ensure data integrity and security. They transform input data of any size into a fixed-size string of characters, which is typically a hash value or hash code. Here's a detailed explanation:</p>
+          <h4 class="question-title">Key Concepts of Hashing Algorithms</h4>
+          <p><strong>Hash Function:</strong><br>
+Definition: A hash function takes an input (or message) and produces a fixed-size string of bytes. The output, known as the hash value or digest, is unique to each unique input.<br>
+Properties: Hash functions are designed to be fast and efficient, producing a hash value quickly.</p>
+          <p><strong>Deterministic:</strong><br>
+Definition: A hash function is deterministic, meaning that the same input will always produce the same hash value.<br>
+Usage: This property ensures consistency and reliability in data verification processes.</p>
+          <p><strong>Pre-image Resistance:</strong><br>
+Definition: It should be computationally infeasible to reverse-engineer the original input from its hash value.<br>
+Usage: This property ensures that the hash value does not reveal any information about the original data.</p>
+          <p><strong>Collision Resistance:</strong><br>
+Definition: It should be highly unlikely for two different inputs to produce the same hash value.<br>
+Usage: This property ensures the uniqueness of hash values, which is crucial for data integrity.</p>
+          <p><strong>Avalanche Effect:</strong><br>
+Definition: A small change in the input should produce a significantly different hash value.<br>
+Usage: This property ensures that even minor alterations in the input data are detectable.</p>
+          <h4 class="question-title">Common Hashing Algorithms</h4>
+          <p>MD5 (Message Digest Algorithm 5):<br>
+Overview: Produces a 128-bit hash value. It was widely used but is now considered insecure due to vulnerabilities that allow for collision attacks.<br>
+Usage: Still used for checksums and non-cryptographic purposes.</p>
+          <p>SHA-1 (Secure Hash Algorithm 1):<br>
+Overview: Produces a 160-bit hash value. It has been deprecated for most cryptographic uses due to vulnerabilities.<br>
+Usage: Previously used in SSL certificates and digital signatures.</p>
+          <p>SHA-256 (Secure Hash Algorithm 256-bit):<br>
+Overview: Part of the SHA-2 family, it produces a 256-bit hash value and is widely used for its strong security properties.<br>
+Usage: Commonly used in blockchain technology, digital signatures, and SSL certificates.</p>
+          <p>SHA-3 (Secure Hash Algorithm 3):<br>
+Overview: The latest member of the Secure Hash Algorithm family, designed to provide strong security even against future threats.<br>
+Usage: Used in various cryptographic applications where high security is required.</p>
+          <h4 class="question-title">Applications of Hashing Algorithms</h4>
+          <p>Data Integrity:<br>
+Usage: Hashing ensures that data has not been altered during transmission or storage. By comparing the hash values before and after transmission, any changes can be detected.</p>
+          <p>Digital Signatures:<br>
+Usage: Hashing is used to create digital signatures, which verify the authenticity and integrity of a message or document.</p>
+          <p>Password Storage:<br>
+Usage: Passwords are hashed before being stored in databases. This ensures that even if the database is compromised, the actual passwords are not exposed.</p>
+          <p>Blockchain:<br>
 Usage: Hashing is fundamental to blockchain technology, ensuring the integrity and security of transactions.</p>
         </div>
-        <div class="range">
+
+        <div class="range" id="digital-signatures">
           <img src="https://cdn.educba.com/academy/wp-content/uploads/2019/11/Digital-Signature-Cryptography-2.png" alt="Digital Signatures">
           <h3>Digital Signatures</h3>
-          <p>Digital signatures are a cryptographic technique used to verify the authenticity and integrity of a message, document, or piece of data. They provide a way to ensure that the information has not been altered and that it comes from a legitimate source. Here's a detailed explanation:
-
-Key Concepts of Digital Signatures
-Public Key Infrastructure (PKI):
-
-Definition: PKI is a framework that uses asymmetric encryption to provide secure communication and authentication. It involves the use of public and private key pairs.
-
-Digital Certificates: PKI relies on digital certificates issued by Certificate Authorities (CAs) to verify the identity of users and devices. These certificates bind a public key to an entity's identity, ensuring that the public key belongs to the legitimate owner.
-
-How Digital Signatures Work:
-
-Signing: The sender creates a digital signature by generating a hash of the message and encrypting it with their private key. This encrypted hash, along with the original message, forms the digital signature.
-
-Verification: The recipient uses the sender's public key to decrypt the hash. They then generate a hash of the received message and compare it to the decrypted hash. If the hashes match, it confirms that the message has not been altered and that it was sent by the legitimate sender.
-
-Hash Functions:
-
-Definition: A hash function takes an input (or message) and produces a fixed-size string of bytes, typically a digest that appears random. Any change to the input, even a small one, results in a significantly different hash value.
-
-Usage: Hash functions are used to verify data integrity by comparing the hash value of the original data with the hash value of the received data. If the values match, the data has not been altered.
-
-Benefits of Digital Signatures
-Authentication: Digital signatures verify the identity of the sender, ensuring that the message comes from a legitimate source.
-
-Integrity: They ensure that the message has not been altered during transmission, providing assurance that the data is accurate and reliable.
-
-Non-Repudiation: Digital signatures provide proof of the origin and integrity of the message, preventing the sender from denying that they sent the message.
-
-Applications of Digital Signatures
-Email Security: Digital signatures are used to secure email communications, ensuring that the messages are authentic and have not been tampered with.
-
-Software Distribution: They are used to verify the authenticity and integrity of software updates and downloads, ensuring that the software has not been altered or tampered with.
-
+          <p>Digital signatures are a cryptographic technique used to verify the authenticity and integrity of a message, document, or piece of data. They provide a way to ensure that the information has not been altered and that it comes from a legitimate source. Here's a detailed explanation:</p>
+          <h4 class="question-title">Key Concepts of Digital Signatures</h4>
+          <p><strong>Public Key Infrastructure (PKI):</strong><br>
+Definition: PKI is a framework that uses asymmetric encryption to provide secure communication and authentication. It involves the use of public and private key pairs.<br>
+Digital Certificates: PKI relies on digital certificates issued by Certificate Authorities (CAs) to verify the identity of users and devices. These certificates bind a public key to an entity's identity, ensuring that the public key belongs to the legitimate owner.</p>
+          <p><strong>How Digital Signatures Work:</strong><br>
+Signing: The sender creates a digital signature by generating a hash of the message and encrypting it with their private key. This encrypted hash, along with the original message, forms the digital signature.<br>
+Verification: The recipient uses the sender's public key to decrypt the hash. They then generate a hash of the received message and compare it to the decrypted hash. If the hashes match, it confirms that the message has not been altered and that it was sent by the legitimate sender.</p>
+          <p><strong>Hash Functions:</strong><br>
+Definition: A hash function takes an input (or message) and produces a fixed-size string of bytes, typically a digest that appears random. Any change to the input, even a small one, results in a significantly different hash value.<br>
+Usage: Hash functions are used to verify data integrity by comparing the hash value of the original data with the hash value of the received data. If the values match, the data has not been altered.</p>
+          <h4 class="question-title">Benefits of Digital Signatures</h4>
+          <p>Authentication: Digital signatures verify the identity of the sender, ensuring that the message comes from a legitimate source.<br>
+Integrity: They ensure that the message has not been altered during transmission, providing assurance that the data is accurate and reliable.<br>
+Non-Repudiation: Digital signatures provide proof of the origin and integrity of the message, preventing the sender from denying that they sent the message.</p>
+          <h4 class="question-title">Applications of Digital Signatures</h4>
+          <p>Email Security: Digital signatures are used to secure email communications, ensuring that the messages are authentic and have not been tampered with.<br>
+Software Distribution: They are used to verify the authenticity and integrity of software updates and downloads, ensuring that the software has not been altered or tampered with.<br>
 Legal Documents: Digital signatures are used to sign legal documents electronically, providing a secure and verifiable way to authenticate the documents.</p>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Contact Section -->
-  <section id="contact">
-    <div class="container">
-      <h2>Get in Touch</h2>
-      <form id="contact-form">
-        <input type="text" placeholder="Your Name" required>
-        <input type="email" placeholder="Your Email" required>
-        <textarea placeholder="Your Message" required></textarea>
-        <button type="submit">Send Message</button>
-      </form>
-    </div>
-  </section>
+    <section id="contact">
+      <div class="container">
+        <h2>Get in Touch</h2>
+        <form id="contact-form">
+          <input type="text" placeholder="Your Name" required>
+          <input type="email" placeholder="Your Email" required>
+          <textarea placeholder="Your Message" required></textarea>
+          <button type="submit">Send Message</button>
+        </form>
+      </div>
+    </section>
 
-  <!-- Footer -->
-  <footer>
-    <p>&copy; 2024 Reclaiming Warrior. All rights reserved.</p>
-  </footer>
+    <footer>
+      <p>© 2024 Reclaiming Warrior. All rights reserved.</p>
+    </footer>
+  </div>
 
-  <script src="scriptAll.js"></script>
+  <script>
+    const dropdownButtons = document.querySelectorAll('.dropdown-btn');
+    dropdownButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        const content = button.nextElementSibling;
+        content.classList.toggle('show');
+        const arrow = button.querySelector('span');
+        arrow.textContent = content.classList.contains('show') ? '▲' : '▼';
+      });
+    });
+
+    const form = document.getElementById('contact-form');
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      alert('Message sent! (Simulated)');
+      form.reset();
+    });
+  </script>
 </body>
 </html>
