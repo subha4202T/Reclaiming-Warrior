@@ -29,10 +29,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<link rel="shortcut icon" href="https://www.freepnglogos.com/uploads/warriors-png-logo/reclaiming-warrior-png-logo-10.png" type="image/x-icon">
   <meta charset="UTF-8">
   <title>Register</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" href="https://www.freepnglogos.com/uploads/warriors-png-logo/reclaiming-warrior-png-logo-10.png" type="image/x-icon">
+
+  <!-- Google Identity Services -->
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
 
   <style>
     body {
@@ -44,39 +47,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       justify-content: center;
       align-items: center;
     }
-
     .form-container {
       background: rgba(255, 255, 255, 0.1);
       border-radius: 16px;
-      padding: 40px 30px;
+      padding: 80px;
       width: 100%;
       max-width: 400px;
       backdrop-filter: blur(20px);
       box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
       text-align: center;
       color: white;
-      position: relative;
     }
-
-    .form-container::before {
-      content: '';
-      position: absolute;
-      top: -10%;
-      right: -10%;
-      width: 100px;
-      height: 100px;
-      background: radial-gradient(circle, #ffffff33 10%, transparent 70%);
-      filter: blur(20px);
-      z-index: 0;
-    }
-
     h2 {
       margin-bottom: 25px;
       font-size: 26px;
       font-weight: 600;
       text-shadow: 1px 1px 2px #000;
     }
-
     input {
       width: 100%;
       padding: 12px 15px;
@@ -86,20 +73,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       background: rgba(255, 255, 255, 0.2);
       color: white;
       font-size: 16px;
-      backdrop-filter: blur(5px);
-      transition: all 0.3s ease-in-out;
     }
-
-    input::placeholder {
-      color: #eee;
-    }
-
+    input::placeholder { color: #eee; }
     input:focus {
       outline: none;
       background: rgba(255, 255, 255, 0.3);
       box-shadow: 0 0 0 2px #ffffff88;
     }
-
     button {
       width: 100%;
       padding: 12px;
@@ -110,53 +90,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       font-size: 16px;
       margin-top: 10px;
       cursor: pointer;
-      transition: background 0.3s;
     }
-
-    button:hover {
-      background-color: #e65c00;
+    button:hover { background-color: #e65c00; }
+    .divider {
+      margin: 20px 0;
+      text-align: center;
+      color: #eee;
     }
-
-    .alert {
-      margin-top: 15px;
-      padding: 10px 15px;
-      border-radius: 8px;
-      font-size: 15px;
-      animation: fadeIn 0.5s ease-in-out;
-    }
-
-    .alert.success {
-      background-color: rgba(76, 175, 80, 0.8);
-      color: #fff;
-    }
-
-    .alert.error {
-      background-color: rgba(244, 67, 54, 0.8);
-      color: #fff;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: scale(0.9); }
-      to { opacity: 1; transform: scale(1); }
-    }
-
-    @media screen and (max-width: 500px) {
-      .form-container {
-        padding: 30px 20px;
-      }
+    #g_id_signin {
+      display: flex;
+      justify-content: center;
+      margin-top: 10px;
     }
   </style>
 </head>
 <body>
-
 <div class="form-container">
   <h2>🚀 Create Your Account</h2>
   
-  <?php
-    if (!empty($message)) {
-        echo $message;
-    }
-  ?>
+  <?php if (!empty($message)) echo $message; ?>
 
   <form method="post">
     <input type="text" name="username" placeholder="Username" required>
@@ -164,7 +116,43 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <input type="password" name="password" placeholder="Password" required>
     <button type="submit">Register Now</button>
   </form>
+
+  <div class="divider"></div>
+  <div id="g_id_signin"></div>
 </div>
 
+<script>
+  window.onload = function () {
+    google.accounts.id.initialize({
+      client_id: "444881544975-fcelmef9narr0k87k470dh3c037k7hsa.apps.googleusercontent.com", // Replace this with your actual Google client ID
+      callback: handleCredentialResponse
+    });
+
+    google.accounts.id.renderButton(
+      document.getElementById("g_id_signin"),
+      {
+        theme: "outline",     
+        size: "large",        
+        shape: "pill",        
+        width: "100%"         
+      }
+    );
+  };
+
+  function handleCredentialResponse(response) {
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', 'google_signin_handler.php');
+    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    xhr.onload = function () {
+      if (xhr.status === 200) {
+        alert("✅ Login successful. Redirecting to Course...");
+        window.location.href = "http://localhost/Final_Reclaiming_Warrior_Complete/course.html";
+      } else {
+        alert("❌ Google Sign-In Failed: " + xhr.responseText);
+      }
+    };
+    xhr.send("idtoken=" + response.credential);
+  }
+</script>
 </body>
 </html>
