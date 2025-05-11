@@ -146,7 +146,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     xhr.onload = function () {
       if (xhr.status === 200) {
         alert("✅ Login successful. Redirecting to Course...");
-        window.location.href = "http://localhost/Final_Reclaiming_Warrior_Complete/course.html";
+        window.location.href = "https://localhost/Final_Reclaiming_Warrior_Complete/course.html";
       } else {
         alert("❌ Google Sign-In Failed: " + xhr.responseText);
       }
