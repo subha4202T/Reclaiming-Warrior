@@ -3,12 +3,15 @@ CREATE DATABASE cyber_project;
 USE cyber_project;
 
 CREATE TABLE users (
-  id INT AUTO_INCREMENT PRIMARY KEY,
-  username VARCHAR(50) NOT NULL,
-  password VARCHAR(255) NOT NULL,
-  email VARCHAR(100),
-  otp INT
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(100) NOT NULL,
+    email VARCHAR(100) NOT NULL UNIQUE,
+    password VARCHAR(255),
+    google_id VARCHAR(255) UNIQUE,
+    otp INT,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
+
 
 CREATE TABLE courses (
   id INT AUTO_INCREMENT PRIMARY KEY,
