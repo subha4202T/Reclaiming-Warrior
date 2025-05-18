@@ -27,3 +27,13 @@ CREATE TABLE orders (
   price DECIMAL(10,2),
   purchase_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
+CREATE TABLE payments (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    payment_id VARCHAR(100),
+    full_name VARCHAR(100),
+    email VARCHAR(100),
+    amount DECIMAL(10,2),
+    status VARCHAR(50),
+    payment_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
