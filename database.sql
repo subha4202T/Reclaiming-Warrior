@@ -5,7 +5,7 @@ USE cyber_project;
 CREATE TABLE users (
     id INT AUTO_INCREMENT PRIMARY KEY,
     username VARCHAR(100) NOT NULL,
-    email VARCHAR(100) NOT NULL UNIQUE,
+    email VARCHAR(100) NOT NULL,
     password VARCHAR(255),
     google_id VARCHAR(255) UNIQUE,
     otp INT,
@@ -29,11 +29,10 @@ CREATE TABLE orders (
 );
 CREATE TABLE payments (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    payment_id VARCHAR(100),
-    full_name VARCHAR(100),
-    email VARCHAR(100),
-    amount DECIMAL(10,2),
-    status VARCHAR(50),
+    full_name VARCHAR(100) NOT NULL,
+    email VARCHAR(100) NOT NULL,
+    phone VARCHAR(15) NOT NULL,
+    amount DECIMAL(10,2) NOT NULL,
+    razorpay_payment_id VARCHAR(100) NOT NULL,
     payment_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
-
