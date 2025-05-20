@@ -1,6 +1,6 @@
 <?php
 include('../db/db_config.php'); 
-session_start();
+session_start(); // Start the session to use session variables
 
 $message = "";
 
@@ -8,13 +8,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = $_POST['username'];
     $password = password_hash($_POST['password'], PASSWORD_DEFAULT); 
     $email = $_POST['email'];
-    $otp = rand(100000, 999999); 
+    $otp = rand(100000, 999999); // Generate OTP
 
     $stmt = $conn->prepare("INSERT INTO users (username, password, email, otp) VALUES (?, ?, ?, ?)");
     $stmt->bind_param("sssi", $username, $password, $email, $otp);
 
     if ($stmt->execute()) {
+        // ✅ Set session variables after successful registration
+        $_SESSION['username'] = $username;
+        $_SESSION['email'] = $email;
         $_SESSION['otp_message'] = "🎉 Registered successfully! Your OTP is: <strong>$otp</strong>";
+        
+        // Redirect to login page
         header("Location: login.php");
         exit;
     } else {
@@ -117,7 +122,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <button type="submit">Register Now</button>
   </form>
 
-  <div class="divider"></div>
+  <div class="divider">or</div>
   <div id="g_id_signin"></div>
 </div>
 
@@ -146,7 +151,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     xhr.onload = function () {
       if (xhr.status === 200) {
         alert("✅ Login successful. Redirecting to Course...");
-        window.location.href = "https://localhost/Final_Reclaiming_Warrior_Complete/course.html";
+        window.location.href = "http://localhost/Final_Reclaiming_Warrior_Complete/course.html";
       } else {
         alert("❌ Google Sign-In Failed: " + xhr.responseText);
       }
