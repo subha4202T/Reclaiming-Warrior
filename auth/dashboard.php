@@ -122,7 +122,7 @@ if (!isset($_SESSION['username'])) {
             // Check if the session variable 'username' exists
             <?php if (isset($_SESSION['username'])): ?>
                 // If the user is logged in, redirect to course.html
-                window.location.href = 'https://localhost/Final_Reclaiming_Warrior_Complete/course.html';
+                window.location.href = 'http://localhost/Final_Reclaiming_Warrior_Complete/course.html';
             <?php else: ?>
                 // If not logged in, alert the user and redirect to login page
                 alert("You are not logged in!");
