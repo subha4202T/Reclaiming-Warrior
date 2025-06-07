@@ -1,0 +1,1690 @@
+
+<?php
+session_start();
+
+$payment_id = $_SESSION['payment_id'];
+
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Access cybersecurity tutorials, videos, and resources - CyberLearn Platform">
+    <meta name="keywords" content="cybersecurity, ethical hacking, network security, online learning">
+	<link rel="shortcut icon" href="https://www.freepnglogos.com/uploads/warriors-png-logo/reclaiming-warrior-png-logo-10.png" type="image/x-icon" />    
+	<title>Cybersecurity Master Class| Reclaiming Warrior</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <style>
+        /* Base Styles & Variables */
+        :root {
+            --primary-color: #1E3A8A; /* Cybersecurity-themed blue */
+            --primary-rgb: 30, 58, 138;
+            --primary-hover: #1E40AF;
+            --secondary-color: #3B82F6;
+            --secondary-rgb: 59, 130, 246;
+            --accent-color: #F472B6;
+            --accent-rgb: 244, 114, 182;
+            
+            --text-primary: #333333;
+            --text-secondary: #666666;
+            --text-tertiary: #999999;
+            
+            --bg-primary: #FFFFFF;
+            --bg-secondary: #F5F7FA;
+            --bg-tertiary: #EAEDF3;
+            
+            --card-bg: #FFFFFF;
+            --card-border: #EAEDF3;
+            --card-shadow: 0 4px 12px rgba(0, 0, 0, 0.05), 0 1px 5px rgba(0, 0, 0, 0.05);
+            --card-shadow-hover: 0 12px 24px rgba(30, 58, 138, 0.12), 0 4px 8px rgba(30, 58, 138, 0.08);
+
+            --skeleton-bg: #F0F0F0;
+            --skeleton-shine: rgba(255, 255, 255, 0.8);
+            
+            --success-color: #10B981;
+            --error-color: #EF4444;
+            --warning-color: #F59E0B;
+            --info-color: #3B82F6;
+            
+            --border-radius-sm: 0.375rem;
+            --border-radius: 0.5rem;
+            --border-radius-lg: 0.75rem;
+            --border-radius-xl: 1rem;
+            
+            --spacing-xs: 0.25rem;
+            --spacing-sm: 0.5rem;
+            --spacing: 1rem;
+            --spacing-md: 1.5rem;
+            --spacing-lg: 2rem;
+            --spacing-xl: 3rem;
+            
+            --transition-fast: 150ms ease;
+            --transition: 300ms ease;
+            --transition-slow: 500ms ease;
+
+            --container-width: 1200px;
+            --header-height: 4rem;
+            --footer-height: 3rem;
+            --sidebar-width: 260px;
+            --sidebar-collapsed-width: 70px;
+            
+            --box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+
+        /* Dark Mode Variables */
+        .dark-mode {
+            --primary-color: #3B82F6;
+            --primary-rgb: 59, 130, 246;
+            --primary-hover: #60A5FA;
+            --secondary-color: #1E3A8A;
+            --secondary-rgb: 30, 58, 138;
+            
+            --text-primary: #FFFFFF;
+            --text-secondary: #CCCCCC;
+            --text-tertiary: #999999;
+            
+            --bg-primary: #000000;
+            --bg-secondary: #111111;
+            --bg-tertiary: #222222;
+            
+            --card-bg: #111111;
+            --card-border: #2A2A2A;
+            --card-shadow: 0 4px 10px rgba(0, 0, 0, 0.3), 0 1px 3px rgba(0, 0, 0, 0.2);
+            --card-shadow-hover: 0 10px 20px rgba(59, 130, 246, 0.2), 0 6px 10px rgba(59, 130, 246, 0.15);
+
+            --skeleton-bg: #222222;
+            --skeleton-shine: rgba(255, 255, 255, 0.05);
+        }
+
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.5;
+            transition: background-color var(--transition), color var(--transition);
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Poppins', sans-serif;
+        }
+
+        a {
+            color: var(--primary-color);
+            text-decoration: none;
+            transition: color var(--transition-fast);
+        }
+
+        a:hover {
+            color: var(--primary-hover);
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        /* App Layout */
+        .app-container {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .main-content {
+            flex: 1;
+            padding: var(--spacing-lg) 0;
+            margin-top: var(--header-height);
+        }
+
+        /* Container */
+        .container {
+            width: 100%;
+            max-width: var(--container-width);
+            margin: 0 auto;
+            padding: 0 var(--spacing);
+        }
+
+        /* Header */
+        .app-header {
+            background-color: var(--bg-primary);
+            border-bottom: 1px solid var(--card-border);
+            padding: 0.75rem 0;
+            position: fixed;
+            top: 0;
+            left: var(--sidebar-width);
+            right: 0;
+            z-index: 1000;
+            width: calc(100% - var(--sidebar-width));
+            transition: left var(--transition), width var(--transition);
+        }
+
+        .app-header.extended {
+            left: var(--sidebar-collapsed-width);
+            width: calc(100% - var(--sidebar-collapsed-width));
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .app-logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        .app-logo:hover {
+            color: var(--primary-hover);
+        }
+
+        .header-actions {
+            display: flex;
+            gap: var(--spacing);
+            align-items: center;
+        }
+
+        .theme-toggle {
+            width: 2.5rem;
+            height: 2.5rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--bg-tertiary);
+            color: var(--text-primary);
+            transition: background-color var(--transition-fast), color var(--transition-fast);
+            border: none;
+            cursor: pointer;
+        }
+
+        .theme-toggle:hover {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            width: var(--sidebar-width);
+            background-color: var(--bg-primary);
+            border-right: 1px solid var(--card-border);
+            z-index: 1030;
+            transition: transform var(--transition), width var(--transition);
+            overflow-y: auto;
+            padding-top: 0;
+        }
+
+        .sidebar.collapsed {
+            width: var(--sidebar-collapsed-width);
+        }
+
+        .sidebar-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.75rem var(--spacing-md);
+            border-bottom: 1px solid var(--card-border);
+        }
+
+        .sidebar-logo {
+            font-weight: 700;
+            color: var(--primary-color);
+            white-space: nowrap;
+        }
+
+        .sidebar-toggle {
+            background: transparent;
+            border: none;
+            color: var(--text-secondary);
+            cursor: pointer;
+            width: 2rem;
+            height: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: var(--border-radius);
+            transition: background-color var(--transition-fast);
+        }
+
+        .sidebar-toggle:hover {
+            background-color: var(--bg-tertiary);
+            color: var(--text-primary);
+        }
+
+        .sidebar-menu {
+            list-style: none;
+            padding: var(--spacing) 0;
+        }
+
+        .sidebar-menu-item {
+            padding: var(--spacing) var(--spacing-md);
+            display: flex;
+            align-items: center;
+            color: var(--text-secondary);
+            transition: background-color var(--transition-fast), color var(--transition-fast), transform var(--transition-fast);
+            cursor: pointer;
+            border-radius: var(--border-radius-sm);
+            margin: 0.25rem var(--spacing-sm);
+        }
+
+        @media (max-width: 992px) {
+            .sidebar-menu-item {
+                padding: var(--spacing-md) var(--spacing-md);
+            }
+        }
+
+        .sidebar-menu-item:hover, .sidebar-menu-item.active {
+            background-color: var(--bg-secondary);
+            color: var(--primary-color);
+            transform: translateX(5px);
+        }
+
+        .sidebar-menu-item.active {
+            border-left: 3px solid var(--primary-color);
+            background-color: rgba(var(--primary-rgb), 0.1);
+        }
+
+        .sidebar-menu-item .menu-icon {
+            width: 1.5rem;
+            text-align: center;
+            margin-right: var(--spacing-md);
+            font-size: 1.1rem;
+        }
+
+        .sidebar-menu-item .menu-text {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        /* Coming Soon Section */
+        .sidebar-menu-divider {
+            padding: var(--spacing) var(--spacing-md);
+            margin-top: var(--spacing);
+            border-top: 1px solid var(--card-border);
+        }
+
+        .menu-section-title {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text-tertiary);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .sidebar-menu-item.disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            position: relative;
+        }
+
+        .sidebar-menu-item.disabled:hover {
+            background-color: transparent;
+            color: var(--text-secondary);
+        }
+
+        .sidebar-menu-item.disabled:after {
+            content: "Coming Soon";
+            position: absolute;
+            right: var(--spacing-md);
+            font-size: 0.7rem;
+            background-color: var(--accent-color);
+            color: white;
+            padding: 0.1rem 0.4rem;
+            border-radius: var(--border-radius-sm);
+            opacity: 0.8;
+        }
+
+        .sidebar.collapsed .sidebar-menu-item .menu-text {
+            display: none;
+        }
+
+        .sidebar.collapsed .sidebar-logo-text {
+            display: none;
+        }
+
+        /* Main Content with Sidebar */
+        .content-wrapper {
+            margin-left: var(--sidebar-width);
+            transition: margin-left var(--transition);
+            padding-top: calc(var(--header-height) - 0.75rem);
+        }
+
+        .content-wrapper.extended {
+            margin-left: var(--sidebar-collapsed-width);
+        }
+
+        /* Mobile Sidebar */
+        @media (max-width: 992px) {
+            .sidebar {
+                transform: translateX(-100%);
+                box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+                width: 85%;
+                max-width: 300px;
+            }
+            
+            .sidebar.show {
+                transform: translateX(0);
+            }
+            
+            .content-wrapper {
+                margin-left: 0;
+            }
+            
+            .content-wrapper.extended {
+                margin-left: 0;
+            }
+            
+            .app-header {
+                left: 0;
+                width: 100%;
+                padding-left: var(--spacing);
+            }
+            
+            .app-header.extended {
+                left: 0;
+                width: 100%;
+            }
+        }
+
+        /* Menu Toggle for Mobile */
+        .navbar-toggler {
+            background: transparent;
+            border: none;
+            color: var(--text-primary);
+            padding: var(--spacing-sm);
+            cursor: pointer;
+            min-width: 42px;
+            min-height: 42px;
+            border-radius: 50%;
+            align-items: center;
+            justify-content: center;
+            transition: background-color var(--transition-fast);
+            display: none;
+        }
+        
+        .navbar-toggler:hover {
+            background-color: var(--bg-tertiary);
+        }
+
+        @media (max-width: 992px) {
+            .navbar-toggler {
+                display: flex;
+            }
+        }
+
+        /* Sidebar Backdrop */
+        .sidebar-backdrop {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1020;
+            display: none;
+            opacity: 0;
+            transition: opacity var(--transition);
+        }
+
+        .sidebar-backdrop.show {
+            display: block;
+            opacity: 1;
+        }
+
+        /* Card Styles */
+        .card {
+            background-color: var(--card-bg);
+            border-radius: var(--border-radius-lg);
+            box-shadow: var(--card-shadow);
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            border: 1px solid var(--card-border);
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--card-shadow-hover);
+        }
+
+        .card-body {
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+        }
+
+        .card-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+            color: var(--text-primary);
+        }
+
+        .card-text {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .card-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: var(--border-radius);
+            font-weight: 500;
+            transition: background-color var(--transition-fast), transform var(--transition-fast);
+            align-self: flex-start;
+            margin-top: auto;
+            border: none;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .card-btn:hover {
+            background-color: var(--primary-hover);
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        /* Video Player Styles */
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            height: 0;
+            overflow: hidden;
+            margin-bottom: var(--spacing);
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* Gradient Icons */
+        .gradient-indigo { background: linear-gradient(135deg, #1E3A8A, #3B82F6); }
+        .gradient-pink { background: linear-gradient(135deg, #F472B6, #F9A8D4); }
+        .gradient-cyan { background: linear-gradient(135deg, #06B6D4, #67E8F9); }
+        .gradient-emerald { background: linear-gradient(135deg, #10B981, #6EE7B7); }
+        .gradient-amber { background: linear-gradient(135deg, #F59E0B, #FCD34D); }
+        .gradient-purple { background: linear-gradient(135deg, #6B46C1, #9F7AEA); }
+        .gradient-orange { background: linear-gradient(135deg, #F97316, #FBBF24); }
+        .gradient-teal { background: linear-gradient(135deg, #14B8A6, #5EEAD4); }
+        .gradient-red { background: linear-gradient(135deg, #EF4444, #FCA5A5); }
+
+        .batch-icon {
+            width: 3rem;
+            height: 3rem;
+            border-radius: var(--border-radius);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+        }
+
+        /* Grid System */
+        .row {
+            display: flex;
+            flex-wrap: wrap;
+            margin: 0 -1rem;
+        }
+
+        [class*="col-"] {
+            padding: 0 1rem;
+            margin-bottom: var(--spacing-md);
+        }
+
+        .col-md-6 {
+            flex: 0 0 100%;
+            max-width: 100%;
+        }
+
+        @media (min-width: 768px) {
+            .col-md-6 {
+                flex: 0 0 50%;
+                max-width: 50%;
+            }
+            
+            .g-4 {
+                margin: 0 -1rem;
+            }
+            
+            .g-4 > div {
+                padding: 0 1rem;
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: row;
+                justify-content: space-between;
+                gap: var(--spacing-sm);
+            }
+
+            .app-logo {
+                font-size: 1.3rem;
+            }
+            
+            .navbar-toggler {
+                display: flex;
+                padding: 0.5rem;
+                margin-right: 0.5rem;
+            }
+            
+            .theme-toggle {
+                width: 2rem;
+                height: 2rem;
+                font-size: 0.9rem;
+            }
+        }
+
+        /* Footer Styles */
+        .app-footer {
+            background-color: var(--bg-primary);
+            border-top: 1px solid var(--card-border);
+            padding: 1rem 0;
+            margin-top: 2rem;
+            width: 100%;
+            position: relative;
+            left: 0;
+            right: 0;
+            z-index: 10;
+        }
+        
+        .app-footer .container-fluid {
+            padding-left: 1.5rem;
+            padding-right: 1.5rem;
+            max-width: 100%;
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 992px) {
+            .app-footer {
+                margin-top: 1.5rem;
+                padding: 0.75rem 0;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .app-footer .container-fluid {
+                padding-left: 1rem;
+                padding-right: 1rem;
+            }
+            
+            .footer-text {
+                font-size: 0.85rem;
+            }
+        }
+
+        /* Hidden class */
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <header class="app-header">
+            <div class="container">
+                <div class="header-content">
+                    <div class="d-flex align-items-center">
+                        <button id="mobileSidebarToggle" class="navbar-toggler me-2" aria-label="Toggle navigation">
+                            <i class="fas fa-bars"></i>
+                        </button>
+                        <a href="" class="app-logo">RECLAIMING WARRIOR</a>
+                    </div>
+                    <div class="header-actions">
+                        <button id="themeToggle" class="theme-toggle" aria-label="Toggle dark mode">
+                            <i class="fas fa-moon"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Sidebar Backdrop -->
+        <div id="sidebarBackdrop" class="sidebar-backdrop"></div>
+        
+        <!-- Sidebar -->
+        <aside id="sidebar" class="sidebar">
+            <div class="sidebar-header">
+                <a href="" class="sidebar-logo">
+                    <span class="sidebar-logo-text">RECLAIMING WARRIOR</span>
+                </a>
+                <button id="toggleSidebar" class="sidebar-toggle" aria-label="Toggle sidebar">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+            </div>
+            <ul class="sidebar-menu">
+                <li class="sidebar-menu-item active" onclick="showFolders()">
+                    <i class="fas fa-home menu-icon"></i>
+                    <span class="menu-text">Home</span>
+                </li>
+                <li class="sidebar-menu-item" onclick="showCategory('introduction')">
+                    <i class="fas fa-info-circle menu-icon"></i>
+                    <span class="menu-text">Introduction to Cybersecurity</span>
+                </li>
+                <li class="sidebar-menu-item" onclick="showCategory('cyber-threats')">
+                    <i class="fas fa-exclamation-triangle menu-icon"></i>
+                    <span class="menu-text">Cyber Threats</span>
+                </li>
+                <li class="sidebar-menu-item" onclick="showCategory('penetration-testing')">
+                    <i class="fas fa-bug menu-icon"></i>
+                    <span class="menu-text">Penetration Testing</span>
+                </li>
+                <li class="sidebar-menu-item" onclick="showCategory('cryptography')">
+                    <i class="fas fa-lock menu-icon"></i>
+                    <span class="menu-text">Cryptography</span>
+                </li>
+                <li class="sidebar-menu-item" onclick="showCategory('linux-basics')">
+                    <i class="fas fa-terminal menu-icon"></i>
+                    <span class="menu-text">Linux Basics</span>
+                </li>
+                <li class="sidebar-menu-item" onclick="showCategory('network-security')">
+                    <i class="fas fa-network-wired menu-icon"></i>
+                    <span class="menu-text">Network Security</span>
+                </li>
+                <li class="sidebar-menu-item" onclick="showCategory('web-security')">
+                    <i class="fas fa-globe menu-icon"></i>
+                    <span class="menu-text">Web Security</span>
+                </li>
+                <li class="sidebar-menu-item" onclick="showCategory('owasp')">
+                    <i class="fas fa-shield-alt menu-icon"></i>
+                    <span class="menu-text">OWASP</span>
+                </li>
+                <li class="sidebar-menu-item" onclick="showCategory('bug-bounty')">
+                    <i class="fas fa-trophy menu-icon"></i>
+                    <span class="menu-text">Bug Bounty</span>
+                </li>
+            </ul>
+        </aside>
+
+        <main class="content-wrapper main-content" id="content">
+            <div class="container">
+                <!-- Back to Folders button -->
+                <div id="backToFolders" class="back-button hidden">
+                    <button class="btn btn-outline-primary" onclick="showFolders()">
+                        <i class="fas fa-arrow-left me-2"></i>
+                        <span>Back to Folders</span>
+                    </button>
+                </div>
+                
+                <!-- Folders Section -->
+                <div id="foldersSection" class="folders-section">
+                    <h2 class="section-title mb-4">Welcome to Your Cybersecurity Journey</h2>
+                    <p class="text-secondary mb-4">Select a category below to explore cybersecurity tutorial videos.</p>
+                    <div id="folder-container" class="row folder-selection-container">
+                        <div class="col-md-6 col-lg-4 mb-4">
+                            <div class="card folder-card" data-category-id="introduction" onclick="showCategory('introduction')">
+                                <div class="card-body">
+                                    <div class="d-flex align-items-center">
+                                        <div class="batch-icon me-3 gradient-indigo">
+                                            <i class="fas fa-info-circle"></i>
+                                        </div>
+                                        <div>
+                                            <h5 class="card-title">Introduction to Cybersecurity</h5>
+                                            <p class="card-text">Foundational Concepts</p>
+                                            <button class="card-btn">Explore Videos <i class="fas fa-arrow-right ms-2"></i></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-lg-4 mb-4">
+                            <div class="card folder-card" data-category-id="cyber-threats" onclick="showCategory('cyber-threats')">
+                                <div class="card-body">
+                                    <div class="d-flex align-items-center">
+                                        <div class="batch-icon me-3 gradient-pink">
+                                            <i class="fas fa-exclamation-triangle"></i>
+                                        </div>
+                                        <div>
+                                            <h5 class="card-title">Cyber Threats</h5>
+                                            <p class="card-text">Attack Types & Defenses</p>
+                                            <button class="card-btn">Explore Videos <i class="fas fa-arrow-right ms-2"></i></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-lg-4 mb-4">
+                            <div class="card folder-card" data-category-id="penetration-testing" onclick="showCategory('penetration-testing')">
+                                <div class="card-body">
+                                    <div class="d-flex align-items-center">
+                                        <div class="batch-icon me-3 gradient-cyan">
+                                            <i class="fas fa-bug"></i>
+                                        </div>
+                                        <div>
+                                            <h5 class="card-title">Penetration Testing</h5>
+                                            <p class="card-text">Testing & Footprinting</p>
+                                            <button class="card-btn">Explore Videos <i class="fas fa-arrow-right ms-2"></i></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-lg-4 mb-4">
+                            <div class="card folder-card" data-category-id="cryptography" onclick="showCategory('cryptography')">
+                                <div class="card-body">
+                                    <div class="d-flex align-items-center">
+                                        <div class="batch-icon me-3 gradient-emerald">
+                                            <i class="fas fa-lock"></i>
+                                        </div>
+                                        <div>
+                                            <h5 class="card-title">Cryptography</h5>
+                                            <p class="card-text">Data Protection</p>
+                                            <button class="card-btn">Explore Videos <i class="fas fa-arrow-right ms-2"></i></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-lg-4 mb-4">
+                            <div class="card folder-card" data-category-id="linux-basics" onclick="showCategory('linux-basics')">
+                                <div class="card-body">
+                                    <div class="d-flex align-items-center">
+                                        <div class="batch-icon me-3 gradient-amber">
+                                            <i class="fas fa-terminal"></i>
+                                        </div>
+                                        <div>
+                                            <h5 class="card-title">Linux Basics</h5>
+                                            <p class="card-text">Linux for Cybersecurity</p>
+                                            <button class="card-btn">Explore Videos <i class="fas fa-arrow-right ms-2"></i></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-lg-4 mb-4">
+                            <div class="card folder-card" data-category-id="network-security" onclick="showCategory('network-security')">
+                                <div class="card-body">
+                                    <div class="d-flex align-items-center">
+                                        <div class="batch-icon me-3 gradient-purple">
+                                            <i class="fas fa-network-wired"></i>
+                                        </div>
+                                        <div>
+                                            <h5 class="card-title">Network Security</h5>
+                                            <p class="card-text">Secure Networks</p>
+                                            <button class="card-btn">Explore Videos <i class="fas fa-arrow-right ms-2"></i></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-lg-4 mb-4">
+                            <div class="card folder-card" data-category-id="web-security" onclick="showCategory('web-security')">
+                                <div class="card-body">
+                                    <div class="d-flex align-items-center">
+                                        <div class="batch-icon me-3 gradient-orange">
+                                            <i class="fas fa-globe"></i>
+                                        </div>
+                                        <div>
+                                            <h5 class="card-title">Web Security</h5>
+                                            <p class="card-text">Protect Websites</p>
+                                            <button class="card-btn">Explore Videos <i class="fas fa-arrow-right ms-2"></i></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-lg-4 mb-4">
+                            <div class="card folder-card" data-category-id="owasp" onclick="showCategory('owasp')">
+                                <div class="card-body">
+                                    <div class="d-flex align-items-center">
+                                        <div class="batch-icon me-3 gradient-teal">
+                                            <i class="fas fa-shield-alt"></i>
+                                        </div>
+                                        <div>
+                                            <h5 class="card-title">OWASP</h5>
+                                            <p class="card-text">Web Vulnerabilities</p>
+                                            <button class="card-btn">Explore Videos <i class="fas fa-arrow-right ms-2"></i></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-lg-4 mb-4">
+                            <div class="card folder-card" data-category-id="bug-bounty" onclick="showCategory('bug-bounty')">
+                                <div class="card-body">
+                                    <div class="d-flex align-items-center">
+                                        <div class="batch-icon me-3 gradient-red">
+                                            <i class="fas fa-trophy"></i>
+                                        </div>
+                                        <div>
+                                            <h5 class="card-title">Bug Bounty</h5>
+                                            <p class="card-text">Hunting Bugs</p>
+                                            <button class="card-btn">Explore Videos <i class="fas fa-arrow-right ms-2"></i></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Video Sections -->
+                <div id="videoSections" class="video-sections hidden">
+                    <!-- Introduction to Cybersecurity Videos -->
+                    <div id="introduction-videos" class="category-videos hidden">
+                        <h2 class="section-title mb-4">Introduction to Cybersecurity Videos</h2>
+                        <div class="row video-selection-container">
+                            <div class="col-md-6 col-lg-4 mb-4">
+                                <div class="card video-card" data-video-id="1">
+                                    <div class="card-body">
+                                        <div class="video-container">
+                                            <iframe src="https://www.youtube.com/embed/RVR25MzHnCI" title="Course Outline" allowfullscreen></iframe>
+                                        </div>
+                                        <h5 class="card-title">Course Outline</h5>
+                                        <p class="card-text">Overview of the cybersecurity course structure.</p>
+                                        <a href="https://www.youtube.com/watch?v=RVR25MzHnCI" target="_blank" class="card-btn">Watch on YouTube <i class="fas fa-external-link-alt ms-2"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-4 mb-4">
+                                <div class="card video-card" data-video-id="2">
+                                    <div class="card-body">
+                                        <div class="video-container">
+                                            <iframe src="https://www.youtube.com/embed/ZXM-9YONmHc" title="Requirement" allowfullscreen></iframe>
+                                        </div>
+                                        <h5 class="card-title">Requirement</h5>
+                                        <p class="card-text">Prerequisites for learning cybersecurity.</p>
+                                        <a href="https://www.youtube.com/watch?v=ZXM-9YONmHc" target="_blank" class="card-btn">Watch on YouTube <i class="fas fa-external-link-alt ms-2"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-4 mb-4">
+                                <div class="card video-card" data-video-id="3">
+                                    <div class="card-body">
+                                        <div class="video-container">
+                                            <iframe src="https://www.youtube.com/embed/OpMMrayXfyM" title="Getting Ready" allowfullscreen></iframe>
+                                        </div>
+                                        <h5 class="card-title">Getting Ready</h5>
+                                        <p class="card-text">Preparing for your cybersecurity journey.</p>
+                                        <a href="https://www.youtube.com/watch?v=OpMMrayXfyM" target="_blank" class="card-btn">Watch on YouTube <i class="fas fa-external-link-alt ms-2"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-4 mb-4">
+                                <div class="card video-card" data-video-id="4">
+                                    <div class="card-body">
+                                        <div class="video-container">
+                                            <iframe src="https://www.youtube.com/embed/VZPhj7aAwr8" title="Effective Note Keeping" allowfullscreen></iframe>
+                                        </div>
+                                        <h5 class="card-title">Effective Note Keeping</h5>
+                                        <p class="card-text">Tips for organizing cybersecurity notes.</p>
+                                        <a href="https://www.youtube.com/watch?v=VZPhj7aAwr8" target="_blank" class="card-btn">Watch on YouTube <i class="fas fa-external-link-alt ms-2"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-4 mb-4">
+                                <div class="card video-card" data-video-id="5">
+                                    <div class="card-body">
+                                        <div class="video-container">
+                                            <iframe src="https://www.youtube.com/embed/g6yqSxIjIYc" title="Connect with Community" allowfullscreen></iframe>
+                                        </div>
+                                        <h5 class="card-title">Connect with Community</h5>
+                                        <p class="card-text">Engaging with the cybersecurity community.</p>
+                                        <a href="https://www.youtube.com/watch?v=g6yqSxIjIYc" target="_blank" class="card-btn">Watch on YouTube <i class="fas fa-external-link-alt ms-2"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-4 mb-4">
+                                <div class="card video-card" data-video-id="6">
+                                    <div class="card-body">
+                                        <div class="video-container">
+                                            <iframe src="https://www.youtube.com/embed/8iWB0iF0NRU" title="What is Cyber Security" allowfullscreen></iframe>
+                                        </div>
+                                        <h5 class="card-title">What is Cyber Security</h5>
+                                        <p class="card-text">Understanding the basics of cybersecurity.</p>
+                                        <a href="https://www.youtube.com/watch?v=8iWB0iF0NRU" target="_blank" class="card-btn">Watch on YouTube <i class="fas fa-external-link-alt ms-2"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-4 mb-4">
+                                <div class="card video-card" data-video-id="9">
+                                    <div class="card-body">
+                                        <div class="video-container">
+                                            <iframe src="https://www.youtube.com/embed/HyjI61jVQz8" title="Careers in Cyber Security" allowfullscreen></iframe>
+                                        </div>
+                                        <h5 class="card-title">Careers in Cyber Security</h5>
+                                        <p class="card-text">Exploring career paths in cybersecurity.</p>
+                                        <a href="https://www.youtube.com/watch?v=HyjI61jVQz8" target="_blank" class="card-btn">Watch on YouTube <i class="fas fa-external-link-alt ms-2"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Cyber Threats Videos -->
+                    <div id="cyber-threats-videos" class="category-videos hidden">
+                        <h2 class="section-title mb-4">Cyber Threats Videos</h2>
+                        <div class="row video-selection-container">
+                            <div class="col-md-6 col-lg-4 mb-4">
+                                <div class="card video-card" data-video-id="7">
+                                    <div class="card-body">
+                                        <div class="video-container">
+                                            <iframe src="https://www.youtube.com/embed/1cKHzJOOMKs" title="History of Cyber Attacks" allowfullscreen></iframe>
+                                        </div>
+                                        <h5 class="card-title">History of Cyber Attacks</h5>
+                                        <p class="card-text">A look at past cyber attacks.</p>
+                                        <a href="https://www.youtube.com/watch?v=1cKHzJOOMKs" target="_blank" class="card-btn">Watch on YouTube <i class="fas fa-external-link-alt ms-2"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-4 mb-4">
+                                <div class="card video-card" data-video-id="8">
+                                    <div class="card-body">
+                                        <div class="video-container">
+                                            <iframe src="https://www.youtube.com/embed/DgrfsOD5cBk" title="Intrusion Detection System" allowfullscreen></iframe>
+                                        </div>
+                                        <h5 class="card-title">Intrusion Detection System</h5>
+                                        <p class="card-text">Learn about detecting intrusions.</p>
+                                        <a href="https://www.youtube.com/watch?v=DgrfsOD5cBk" target="_blank" class="card-btn">Watch on YouTube <i class="fas fa-external-link-alt ms-2"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-4 mb-4">
+                                <div class="card video-card" data-video-id="10">
+                                    <div class="card-body">
+                                        <div class="video-container">
+                                            <iframe src="https://www.youtube.com/embed/FL-Uz8UkZQ8" title="Types of Hackers" allowfullscreen></iframe>
+                                        </div>
+                                        <h5 class="card-title">Types of Hackers</h5>
+                                        <p class="card-text">Different types of hackers explained.</p>
+                                        <a href="https://www.youtube.com/watch?v=FL-Uz8UkZQ8" target="_blank" class="card-btn">Watch on YouTube <i class="fas fa-external-link-alt ms-2"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-4 mb-4">
+                                <div class="card video-card" data-video-id="11">
+                                    <div class="card-body">
+                                        <div class="video-container">
+                                            <iframe src="https://www.youtube.com/embed/Y2dLcLTBCB8" title="Cyber Threats, Malware" allowfullscreen></iframe>
+                                        </div>
+                                        <h5 class="card-title">Cyber Threats, Malware</h5>
+                                        <p class="card-text">Understanding malware threats.</p>
+                                        <a href="https://www.youtube.com/watch?v=Y2dLcLTBCB8" target="_blank" class="card-btn">Watch on YouTube <i class="fas fa-external-link-alt ms-2"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-4 mb-4">
+                                <div class="card video-card" data-video-id="12">
+                                    <div class="card-body">
+                                        <div class="video-container">
+                                            <iframe src="https://www.youtube.com/embed/BscntB2Xj1Q" title="Phishing" allowfullscreen></iframe>
+                                        </div>
+                                        <h5 class="card-title">Phishing</h5>
+                                        <p class="card-text">Learn about phishing attacks.</p>
+                                        <a href="https://www.youtube.com/watch?v=BscntB2Xj1Q" target="_blank" class="card-btn">Watch on YouTube <i class="fas fa-external-link-alt ms-2"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-4 mb-4">
+                                <div class="card video-card" data-video-id="13">
+                                    <div class="card-body">
+                                        <div class="video-container">
+                                            <iframe src="https://www.youtube.com/embed/I70q4vxmi5k" title="MITM Attacks" allowfullscreen></iframe>
+                                        </div>
+                                        <h5 class="card-title">MITM Attacks</h5>
+                                        <p class="card-text">Man-in-the-Middle attacks explained.</p>
+                                        <a href="https://www.youtube.com/watch?v=I70q4vxmi5k" target="_blank" class="card-btn">Watch on YouTube <i class="fas fa-external-link-alt ms-2"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-4 mb-4">
+                                <div class="card video-card" data-video-id="14">
+                                    <div class="card-body">
+                                        <div class="video-container">
+                                            <iframe src="https://www.youtube.com/embed/ZXQt3JPPrjk" title="DDOS Attacks" allowfullscreen></iframe>
+                                        </div>
+                                        <h5 class="card-title">DDOS Attacks</h5>
+                                        <p class="card-text">Understanding DDOS attacks.</p>
+                                        <a href="https://www.youtube.com/watch?v=ZXQt3JPPrjk" target="_blank" class="card-btn">Watch on YouTube <i class="fas fa-external-link-alt ms-2"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-4 mb-4">
+                                <div class="card video-card" data-video-id="15">
+                                    <div class="card-body">
+                                        <div class="video-container">
+                                            <iframe src="https://www.youtube.com/embed/KhSdDUC9zNE" title="Password Attacks" allowfullscreen></iframe>
+                                        </div>
+                                        <h5 class="card-title">Password Attacks</h5>
+                                        <p class="card-text">Techniques used in password attacks.</p>
+                                        <a href="https://www.youtube.com/watch?v=KhSdDUC9zNE" target="_blank" class="card-btn">Watch on YouTube <i class="fas fa-external-link-alt ms-2"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-4 mb-4">
+                                <div class="card video-card" data-video-id="16">
+                                    <div class="card-body">
+                                        <div class="video-container">
+                                            <iframe src="https://www.youtube.com/embed/EyifDT5DQ-o" title="Maladvertising" allowfullscreen></iframe>
+                                        </div>
+                                        <h5 class="card-title">Maladvertising</h5>
+                                        <p class="card-text">Malicious advertising threats.</p>
+                                        <a href="https://www.youtube.com/watch?v=EyifDT5DQ-o" target="_blank" class="card-btn">Watch on YouTube <i class="fas fa-external-link-alt ms-2"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-4 mb-4">
+                                <div class="card video-card" data-video-id="17">
+                                    <div class="card-body">
+                                        <div class="video-container">
+                                            <iframe src="https://www.youtube.com/embed/MOxUB3UlfhU" title="Rouge Softwares" allowfullscreen></iframe>
+                                        </div>
+                                        <h5 class="card-title">Rouge Softwares</h5>
+                                        <p class="card-text">Understanding rogue software threats.</p>
+                                        <a href="https://www.youtube.com/watch?v=MOxUB3UlfhU" target="_blank" class="card-btn">Watch on YouTube <i class="fas fa-external-link-alt ms-2"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-4 mb-4">
+                                <div class="card video-card" data-video-id="23">
+                                    <div class="card-body">
+                                        <div class="video-container">
+                                            <iframe src="https://www.youtube.com/embed/xBT7h5TmA60" title="The CIA Traid" allowfullscreen></iframe>
+                                        </div>
+                                        <h5 class="card-title">The CIA Triad</h5>
+                                        <p class="card-text">Core principles of cybersecurity.</p>
+                                        <a href="https://www.youtube.com/watch?v=xBT7h5TmA60" target="_blank" class="card-btn">Watch on YouTube <i class="fas fa-external-link-alt ms-2"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Penetration Testing Videos -->
+                    <div id="penetration-testing-videos" class="category-videos hidden">
+                        <h2 class="section-title mb-4">Penetration Testing Videos</h2>
+                        <div class="row video-selection-container">
+                            <div class="col-md-6 col-lg-4 mb-4">
+                                <div class="card video-card" data-video-id="18">
+                                    <div class="card-body">
+                                        <div class="video-container">
+                                            <iframe src="https://www.youtube.com/embed/6oo7VCSdvEs" title="What is Penetration Testing" allowfullscreen></iframe>
+                                        </div>
+                                        <h5 class="card-title">What is Penetration Testing</h5>
+                                        <p class="card-text">Introduction to penetration testing.</p>
+                                        <a href="https://www.youtube.com/watch?v=6oo7VCSdvEs" target="_blank" class="card-btn">Watch on YouTube <i class="fas fa-external-link-alt ms-2"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-4 mb-4">
+                                <div class="card video-card" data-video-id="19">
+                                    <div class="card-body">
+                                        <div class="video-container">
+                                            <iframe src="https://www.youtube.com/embed/FHW2T084kyA" title="Types of Penetration Testing" allowfullscreen></iframe>
+                                        </div>
+                                        <h5 class="card-title">Types of Penetration Testing</h5>
+                                        <p class="card-text">Different approaches to penetration testing.</p>
+                                        <a href="https://www.youtube.com/watch?v=FHW2T084kyA" target="_blank" class="card-btn">Watch on YouTube <i class="fas fa-external-link-alt ms-2"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-4 mb-4">
+                                <div class="card video-card" data-video-id="20">
+                                    <div class="card-body">
+                                        <div class="video-container">
+                                            <iframe src="https://www.youtube.com/embed/Hzq_lXZHLz4" title="Stages of Penetration Testing" allowfullscreen></iframe>
+                                        </div>
+                                        <h5 class="card-title">Stages of Penetration Testing</h5>
+                                        <p class="card-text">Steps in the penetration testing process.</p>
+                                        <a href="https://www.youtube.com/watch?v=Hzq_lXZHLz4" target="_blank" class="card-btn">Watch on YouTube <i class="fas fa-external-link-alt ms-2"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-4 mb-4">
+                                <div class="card video-card" data-video-id="24">
+                                    <div class="card-body">
+                                        <div class="video-container">
+                                            <iframe src="https://www.youtube.com/embed/dFfAHts-Oy8" title="Footprinting" allowfullscreen></iframe>
+                                        </div>
+                                        <h5 class="card-title">Footprinting</h5>
+                                        <p class="card-text">Gathering information for penetration testing.</p>
+                                        <a href="https://www.youtube.com/watch?v=dFfAHts-Oy8" target="_blank" class="card-btn">Watch on YouTube <i class="fas fa-external-link-alt ms-2"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Cryptography Videos -->
+                    <div id="cryptography-videos" class="category-videos hidden">
+                        <h2 class="section-title mb-4">Cryptography Videos</h2>
+                        <div class="row video-selection-container">
+                            <div class="col-md-6 col-lg-4 mb-4">
+                                <div class="card video-card" data-video-id="21">
+                                    <div class="card-body">
+                                        <div class="video-container">
+                                            <iframe src="https://www.youtube.com/embed/NZqDH7q2O-M" title="Hashing & Digital Signatures" allowfullscreen></iframe>
+                                        </div>
+                                        <h5 class="card-title">Hashing & Digital Signatures</h5>
+                                        <p class="card-text">Learn about hashing and digital signatures.</p>
+                                        <a href="https://www.youtube.com/watch?v=NZqDH7q2O-M" target="_blank" class="card-btn">Watch on YouTube <i class="fas fa-external-link-alt ms-2"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-4 mb-4">
+                                <div class="card video-card" data-video-id="22">
+                                    <div class="card-body">
+                                        <div class="video-container">
+                                            <iframe src="https://www.youtube.com/embed/htXmKoqsTCc" title="Cryptography" allowfullscreen></iframe>
+                                        </div>
+                                        <h5 class="card-title">Cryptography</h5>
+                                        <p class="card-text">Fundamentals of cryptography in cybersecurity.</p>
+                                        <a href="https://www.youtube.com/watch?v=htXmKoqsTCc" target="_blank" class="card-btn">Watch on YouTube <i class="fas fa-external-link-alt ms-2"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Linux Basics Videos -->
+                    <div id="linux-basics-videos" class="category-videos hidden">
+                        <h2 class="section-title mb-4">Linux Basics Videos</h2>
+                        <div class="row video-selection-container">
+                            <div class="col-md-6 col-lg-4 mb-4">
+                                <div class="card video-card" data-video-id="25">
+                                    <div class="card-body">
+                                        <div class="video-container">
+                                            <iframe src="https://www.youtube.com/embed/s_aJHKZfDS0" title="Linux Started" allowfullscreen></iframe>
+                                        </div>
+                                        <h5 class="card-title">Linux Started</h5>
+                                        <p class="card-text">Introduction to starting with Linux.</p>
+                                        <a href="https://www.youtube.com/watch?v=s_aJHKZfDS0" target="_blank" class="card-btn">Watch on YouTube <i class="fas fa-external-link-alt ms-2"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-4 mb-4">
+                                <div class="card video-card" data-video-id="26">
+                                    <div class="card-body">
+                                        <div class="video-container">
+                                            <iframe src="https://www.youtube.com/embed/cRB2fJPOfG8" title="What is Linux" allowfullscreen></iframe>
+                                        </div>
+                                        <h5 class="card-title">What is Linux</h5>
+                                        <p class="card-text">Understanding the Linux operating system.</p>
+                                        <a href="https://www.youtube.com/watch?v=cRB2fJPOfG8" target="_blank" class="card-btn">Watch on YouTube <i class="fas fa-external-link-alt ms-2"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-4 mb-4">
+                                <div class="card video-card" data-video-id="27">
+                                    <div class="card-body">
+                                        <div class="video-container">
+                                            <iframe src="https://www.youtube.com/embed/lD09aHagXVA" title="Installing Linux VM" allowfullscreen></iframe>
+                                        </div>
+                                        <h5 class="card-title">Installing Linux VM</h5>
+                                        <p class="card-text">Setting up a Linux virtual machine.</p>
+                                        <a href="https://www.youtube.com/watch?v=lD09aHagXVA" target="_blank" class="card-btn">Watch on YouTube <i class="fas fa-external-link-alt ms-2"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-4 mb-4">
+                                <div class="card video-card" data-video-id="28">
+                                    <div class="card-body">
+                                        <div class="video-container">
+                                            <iframe src="https://www.youtube.com/embed/N028R6kqtzk" title="Linux File System" allowfullscreen></iframe>
+                                        </div>
+                                        <h5 class="card-title">Linux File System</h5>
+                                        <p class="card-text">Understanding Linux file structure.</p>
+                                        <a href="https://www.youtube.com/watch?v=N028R6kqtzk" target="_blank" class="card-btn">Watch on YouTube <i class="fas fa-external-link-alt ms-2"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-4 mb-4">
+                                <div class="card video-card" data-video-id="29">
+                                    <div class="card-body">
+                                        <div class="video-container">
+                                            <iframe src="https://www.youtube.com/embed/3xWo7A8Xhzs" title="Linux Commands" allowfullscreen></iframe>
+                                        </div>
+                                        <h5 class="card-title">Linux Commands</h5>
+                                        <p class="card-text">Essential Linux commands for cybersecurity.</p>
+                                        <a href="https://www.youtube.com/watch?v=3xWo7A8Xhzs" target="_blank" class="card-btn">Watch on YouTube <i class="fas fa-external-link-alt ms-2"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-4 mb-4">
+                                <div class="card video-card" data-video-id="30">
+                                    <div class="card-body">
+                                        <div class="video-container">
+                                            <iframe src="https://www.youtube.com/embed/VIDEO_ID_30" title="Important & Sensitive Linux Files" allowfullscreen></iframe>
+                                        </div>
+                                        <h5 class="card-title">Important & Sensitive Linux Files</h5>
+                                        <p class="card-text">Key Linux files for security.</p>
+                                        <a href="https://www.youtube.com/watch?v=VIDEO_ID_30" target="_blank" class="card-btn">Watch on YouTube <i class="fas fa-external-link-alt ms-2"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Network Security Videos -->
+                    <div id="network-security-videos" class="category-videos hidden">
+                        <h2 class="section-title mb-4">Network Security Videos</h2>
+                        <div class="row video-selection-container">
+                            <div class="col-md-6 col-lg-4 mb-4">
+                                <div class="card video-card" data-video-id="31">
+                                    <div class="card-body">
+                                        <div class="video-container">
+                                            <iframe src="https://www.youtube.com/embed/VIDEO_ID_31" title="What is Network" allowfullscreen></iframe>
+                                        </div>
+                                        <h5 class="card-title">What is Network</h5>
+                                        <p class="card-text">Basics of networking in cybersecurity.</p>
+                                        <a href="https://www.youtube.com/watch?v=VIDEO_ID_31" target="_blank" class="card-btn">Watch on YouTube <i class="fas fa-external-link-alt ms-2"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-4 mb-4">
+                                <div class="card video-card" data-video-id="32">
+                                    <div class="card-body">
+                                        <div class="video-container">
+                                            <iframe src="https://www.youtube.com/embed/VIDEO_ID_32" title="IP Addresses" allowfullscreen></iframe>
+                                        </div>
+                                        <h5 class="card-title">IP Addresses</h5>
+                                        <p class="card-text">Understanding IP addresses in networks.</p>
+                                        <a href="https://www.youtube.com/watch?v=VIDEO_ID_32" target="_blank" class="card-btn">Watch on YouTube <i class="fas fa-external-link-alt ms-2"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-4 mb-4">
+                                <div class="card video-card" data-video-id="33">
+                                    <div class="card-body">
+                                        <div class="video-container">
+                                            <iframe src="https://www.youtube.com/embed/VIDEO_ID_33" title="Switches & Routers" allowfullscreen></iframe>
+                                        </div>
+                                        <h5 class="card-title">Switches & Routers</h5>
+                                        <p class="card-text">Role of switches and routers in networks.</p>
+                                        <a href="https://www.youtube.com/watch?v=VIDEO_ID_33" target="_blank" class="card-btn">Watch on YouTube <i class="fas fa-external-link-alt ms-2"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-4 mb-4">
+                                <div class="card video-card" data-video-id="34">
+                                    <div class="card-body">
+                                        <div class="video-container">
+                                            <iframe src="https://www.youtube.com/embed/VIDEO_ID_34" title="Ports & Protocols" allowfullscreen></iframe>
+                                        </div>
+                                        <h5 class="card-title">Ports & Protocols</h5>
+                                        <p class="card-text">Key ports and protocols in networking.</p>
+                                        <a href="https://www.youtube.com/watch?v=VIDEO_ID_34" target="_blank" class="card-btn">Watch on YouTube <i class="fas fa-external-link-alt ms-2"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-4 mb-4">
+                                <div class="card video-card" data-video-id="35">
+                                    <div class="card-body">
+                                        <div class="video-container">
+                                            <iframe src="https://www.youtube.com/embed/VIDEO_ID_35" title="NMAP" allowfullscreen></iframe>
+                                        </div>
+                                        <h5 class="card-title">NMAP</h5>
+                                        <p class="card-text">Using NMAP for network scanning.</p>
+                                        <a href="https://www.youtube.com/watch?v=VIDEO_ID_35" target="_blank" class="card-btn">Watch on YouTube <i class="fas fa-external-link-alt ms-2"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-4 mb-4">
+                                <div class="card video-card" data-video-id="36">
+                                    <div class="card-body">
+                                        <div class="video-container">
+                                            <iframe src="https://www.youtube.com/embed/VIDEO_ID_36" title="TCP & UDP Protocol" allowfullscreen></iframe>
+                                        </div>
+                                        <h5 class="card-title">TCP & UDP Protocol</h5>
+                                        <p class="card-text">Differences between TCP and UDP.</p>
+                                        <a href="https://www.youtube.com/watch?v=VIDEO_ID_36" target="_blank" class="card-btn">Watch on YouTube <i class="fas fa-external-link-alt ms-2"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Web Security Videos -->
+                    <div id="web-security-videos" class="category-videos hidden">
+                        <h2 class="section-title mb-4">Web Security Videos</h2>
+                        <div class="row video-selection-container">
+                            <div class="col-md-6 col-lg-4 mb-4">
+                                <div class="card video-card" data-video-id="37">
+                                    <div class="card-body">
+                                        <div class="video-container">
+                                            <iframe src="https://www.youtube.com/embed/VIDEO_ID_37" title="What is Website" allowfullscreen></iframe>
+                                        </div>
+                                        <h5 class="card-title">What is Website</h5>
+                                        <p class="card-text">Basics of how websites work.</p>
+                                        <a href="https://www.youtube.com/watch?v=VIDEO_ID_37" target="_blank" class="card-btn">Watch on YouTube <i class="fas fa-external-link-alt ms-2"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-4 mb-4">
+                                <div class="card video-card" data-video-id="38">
+                                    <div class="card-body">
+                                        <div class="video-container">
+                                            <iframe src="https://www.youtube.com/embed/VIDEO_ID_38" title="What is Data Base" allowfullscreen></iframe>
+                                        </div>
+                                        <h5 class="card-title">What is Data Base</h5>
+                                        <p class="card-text">Understanding databases in web security.</p>
+                                        <a href="https://www.youtube.com/watch?v=VIDEO_ID_38" target="_blank" class="card-btn">Watch on YouTube <i class="fas fa-external-link-alt ms-2"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-4 mb-4">
+                                <div class="card video-card" data-video-id="39">
+                                    <div class="card-body">
+                                        <div class="video-container">
+                                            <iframe src="https://www.youtube.com/embed/VIDEO_ID_39" title="Client & Server" allowfullscreen></iframe>
+                                        </div>
+                                        <h5 class="card-title">Client & Server</h5>
+                                        <p class="card-text">Client-server architecture explained.</p>
+                                        <a href="https://www.youtube.com/watch?v=VIDEO_ID_39" target="_blank" class="card-btn">Watch on YouTube <i class="fas fa-external-link-alt ms-2"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-4 mb-4">
+                                <div class="card video-card" data-video-id="40">
+                                    <div class="card-body">
+                                        <div class="video-container">
+                                            <iframe src="https://www.youtube.com/embed/VIDEO_ID_40" title="Domains & Sub-Domains" allowfullscreen></iframe>
+                                        </div>
+                                        <h5 class="card-title">Domains & Sub-Domains</h5>
+                                        <p class="card-text">Understanding domains and sub-domains.</p>
+                                        <a href="https://www.youtube.com/watch?v=VIDEO_ID_40" target="_blank" class="card-btn">Watch on YouTube <i class="fas fa-external-link-alt ms-2"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-4 mb-4">
+                                <div class="card video-card" data-video-id="41">
+                                    <div class="card-body">
+                                        <div class="video-container">
+                                            <iframe src="https://www.youtube.com/embed/VIDEO_ID_41" title="Request & Responses" allowfullscreen></iframe>
+                                        </div>
+                                        <h5 class="card-title">Request & Responses</h5>
+                                        <p class="card-text">How requests and responses work in web.</p>
+                                        <a href="https://www.youtube.com/watch?v=VIDEO_ID_41" target="_blank" class="card-btn">Watch on YouTube <i class="fas fa-external-link-alt ms-2"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-4 mb-4">
+                                <div class="card video-card" data-video-id="42">
+                                    <div class="card-body">
+                                        <div class="video-container">
+                                            <iframe src="https://www.youtube.com/embed/VIDEO_ID_42" title="Cookies are Tasty" allowfullscreen></iframe>
+                                        </div>
+                                        <h5 class="card-title">Cookies are Tasty</h5>
+                                        <p class="card-text">Role of cookies in web security.</p>
+                                        <a href="https://www.youtube.com/watch?v=VIDEO_ID_42" target="_blank" class="card-btn">Watch on YouTube <i class="fas fa-external-link-alt ms-2"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-4 mb-4">
+                                <div class="card video-card" data-video-id="43">
+                                    <div class="card-body">
+                                        <div class="video-container">
+                                            <iframe src="https://www.youtube.com/embed/VIDEO_ID_43" title="Http & Https" allowfullscreen></iframe>
+                                        </div>
+                                        <h5 class="card-title">Http & Https</h5>
+                                        <p class="card-text">Differences between HTTP and HTTPS.</p>
+                                        <a href="https://www.youtube.com/watch?v=VIDEO_ID_43" target="_blank" class="card-btn">Watch on YouTube <i class="fas fa-external-link-alt ms-2"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-4 mb-4">
+                                <div class="card video-card" data-video-id="44">
+                                    <div class="card-body">
+                                        <div class="video-container">
+                                            <iframe src="https://www.youtube.com/embed/VIDEO_ID_44" title="HTTP Methods" allowfullscreen></iframe>
+                                        </div>
+                                        <h5 class="card-title">HTTP Methods</h5>
+                                        <p class="card-text">Understanding HTTP methods in web security.</p>
+                                        <a href="https://www.youtube.com/watch?v=VIDEO_ID_44" target="_blank" class="card-btn">Watch on YouTube <i class="fas fa-external-link-alt ms-2"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-4 mb-4">
+                                <div class="card video-card" data-video-id="45">
+                                    <div class="card-body">
+                                        <div class="video-container">
+                                            <iframe src="https://www.youtube.com/embed/VIDEO_ID_45" title="Burp Suite" allowfullscreen></iframe>
+                                        </div>
+                                        <h5 class="card-title">Burp Suite</h5>
+                                        <p class="card-text">Using Burp Suite for web security testing.</p>
+                                        <a href="https://www.youtube.com/watch?v=VIDEO_ID_45" target="_blank" class="card-btn">Watch on YouTube <i class="fas fa-external-link-alt ms-2"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-4 mb-4">
+                                <div class="card video-card" data-video-id="46">
+                                    <div class="card-body">
+                                        <div class="video-container">
+                                            <iframe src="https://www.youtube.com/embed/VIDEO_ID_46" title="HTTP Status Codes" allowfullscreen></iframe>
+                                        </div>
+                                        <h5 class="card-title">HTTP Status Codes</h5>
+                                        <p class="card-text">Learn about HTTP status codes.</p>
+                                        <a href="https://www.youtube.com/watch?v=VIDEO_ID_46" target="_blank" class="card-btn">Watch on YouTube <i class="fas fa-external-link-alt ms-2"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- OWASP Videos -->
+                    <div id="owasp-videos" class="category-videos hidden">
+                        <h2 class="section-title mb-4">OWASP Videos</h2>
+                        <div class="row video-selection-container">
+                            <div class="col-md-6 col-lg-4 mb-4">
+                                <div class="card video-card" data-video-id="47">
+                                    <div class="card-body">
+                                        <div class="video-container">
+                                            <iframe src="https://www.youtube.com/embed/VIDEO_ID_47" title="OWASP 1" allowfullscreen></iframe>
+                                        </div>
+                                        <h5 class="card-title">OWASP 1</h5>
+                                        <p class="card-text">Introduction to OWASP top vulnerabilities.</p>
+                                        <a href="https://www.youtube.com/watch?v=VIDEO_ID_47" target="_blank" class="card-btn">Watch on YouTube <i class="fas fa-external-link-alt ms-2"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-4 mb-4">
+                                <div class="card video-card" data-video-id="48">
+                                    <div class="card-body">
+                                        <div class="video-container">
+                                            <iframe src="https://www.youtube.com/embed/VIDEO_ID_48" title="OWASP 2" allowfullscreen></iframe>
+                                        </div>
+                                        <h5 class="card-title">OWASP 2</h5>
+                                        <p class="card-text">Exploring OWASP vulnerabilities part 2.</p>
+                                        <a href="https://www.youtube.com/watch?v=VIDEO_ID_48" target="_blank" class="card-btn">Watch on YouTube <i class="fas fa-external-link-alt ms-2"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-4 mb-4">
+                                <div class="card video-card" data-video-id="49">
+                                    <div class="card-body">
+                                        <div class="video-container">
+                                            <iframe src="https://www.youtube.com/embed/VIDEO_ID_49" title="OWASP 3" allowfullscreen></iframe>
+                                        </div>
+                                        <h5 class="card-title">OWASP 3</h5>
+                                        <p class="card-text">Exploring OWASP vulnerabilities part 3.</p>
+                                        <a href="https://www.youtube.com/watch?v=VIDEO_ID_49" target="_blank" class="card-btn">Watch on YouTube <i class="fas fa-external-link-alt ms-2"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-4 mb-4">
+                                <div class="card video-card" data-video-id="50">
+                                    <div class="card-body">
+                                        <div class="video-container">
+                                            <iframe src="https://www.youtube.com/embed/VIDEO_ID_50" title="OWASP 4" allowfullscreen></iframe>
+                                        </div>
+                                        <h5 class="card-title">OWASP 4</h5>
+                                        <p class="card-text">Exploring OWASP vulnerabilities part 4.</p>
+                                        <a href="https://www.youtube.com/watch?v=VIDEO_ID_50" target="_blank" class="card-btn">Watch on YouTube <i class="fas fa-external-link-alt ms-2"></
+</div>
+                            <div class="col-md-6 col-lg-4 mb-4">
+                                <div class="card video-card" data-video-id="51">
+                                    <div class="card-body">
+                                        <div class="video-container">
+                                            <iframe src="https://www.youtube.com/embed/VIDEO_ID_51" title="OWASP 5" allowfullscreen></iframe>
+                                        </div>
+                                        <h5 class="card-title">OWASP 5</h5>
+                                        <p class="card-text">Exploring OWASP vulnerabilities part 5.</p>
+                                        <a href="https://www.youtube.com/watch?v=VIDEO_ID_51" target="_blank" class="card-btn">Watch on YouTube <i class="fas fa-external-link-alt ms-2"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Bug Bounty Videos -->
+                    <div id="bug-bounty-videos" class="category-videos hidden">
+                        <h2 class="section-title mb-4">Bug Bounty Videos</h2>
+                        <div class="row video-selection-container">
+                            <div class="col-md-6 col-lg-4 mb-4">
+                                <div class="card video-card" data-video-id="52">
+                                    <div class="card-body">
+                                        <div class="video-container">
+                                            <iframe src="https://www.youtube.com/embed/VIDEO_ID_52" title="Weaponizing" allowfullscreen></iframe>
+                                        </div>
+                                        <h5 class="card-title">Weaponizing</h5>
+                                        <p class="card-text">Techniques for weaponizing vulnerabilities.</p>
+                                        <a href="https://www.youtube.com/watch?v=VIDEO_ID_52" target="_blank" class="card-btn">Watch on YouTube <i class="fas fa-external-link-alt ms-2"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-4 mb-4">
+                                <div class="card video-card" data-video-id="53">
+                                    <div class="card-body">
+                                        <div class="video-container">
+                                            <iframe src="https://www.youtube.com/embed/VIDEO_ID_53" title="Bug Bounty" allowfullscreen></iframe>
+                                        </div>
+                                        <h5 class="card-title">Bug Bounty</h5>
+                                        <p class="card-text">Introduction to bug bounty hunting.</p>
+                                        <a href="https://www.youtube.com/watch?v=VIDEO_ID_53" target="_blank" class="card-btn">Watch on YouTube <i class="fas fa-external-link-alt ms-2"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="app-footer">
+            <div class="container-fluid">
+                <div class="footer-content">
+                    <p class="footer-text">&copy; 2025 Reclaiming Warrior. All rights reserved.</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        $(document).ready(function () {
+            // Sidebar Toggle for Desktop
+            $('#toggleSidebar').on('click', function () {
+                $('#sidebar').toggleClass('collapsed');
+                $('.content-wrapper').toggleClass('extended');
+                $('.app-header').toggleClass('extended');
+                $(this).find('i').toggleClass('fa-chevron-left fa-chevron-right');
+            });
+
+            // Sidebar Toggle for Mobile
+            $('#mobileSidebarToggle').on('click', function () {
+                $('#sidebar').toggleClass('show');
+                $('#sidebarBackdrop').toggleClass('show');
+            });
+
+            // Close Sidebar on Backdrop Click (Mobile)
+            $('#sidebarBackdrop').on('click', function () {
+                $('#sidebar').removeClass('show');
+                $(this).removeClass('show');
+            });
+
+            // Theme Toggle
+            $('#themeToggle').on('click', function () {
+                $('body').toggleClass('dark-mode');
+                const icon = $(this).find('i');
+                icon.toggleClass('fa-moon fa-sun');
+                const isDarkMode = $('body').hasClass('dark-mode');
+                localStorage.setItem('theme', isDarkMode ? 'dark' : 'light');
+            });
+
+            // Load Theme Preference
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark') {
+                $('body').addClass('dark-mode');
+                $('#themeToggle i').removeClass('fa-moon').addClass('fa-sun');
+            }
+
+            // Show/Hide Sections
+            window.showCategory = function (categoryId) {
+                // Hide folders section and show video sections
+                $('#foldersSection').addClass('hidden');
+                $('#videoSections').removeClass('hidden');
+                $('#backToFolders').removeClass('hidden');
+
+                // Hide all video categories
+                $('.category-videos').addClass('hidden');
+                // Show the selected category
+                $(`#${categoryId}-videos`).removeClass('hidden');
+
+                // Update active sidebar menu item
+                $('.sidebar-menu-item').removeClass('active');
+                $(`.sidebar-menu-item[onclick="showCategory('${categoryId}')"]`).addClass('active');
+
+                // Scroll to top
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            };
+
+            window.showFolders = function () {
+                // Show folders section and hide video sections
+                $('#foldersSection').removeClass('hidden');
+                $('#videoSections').addClass('hidden');
+                $('#backToFolders').addClass('hidden');
+
+                // Update active sidebar menu item
+                $('.sidebar-menu-item').removeClass('active');
+                $('.sidebar-menu-item[onclick="showFolders()"]').addClass('active');
+
+                // Scroll to top
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            };
+        });
+    </script>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
