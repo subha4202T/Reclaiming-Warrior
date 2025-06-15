@@ -1,5 +1,12 @@
 <?php
 session_start();
+
+// Redirect to course if payment is already complete
+if (isset($_SESSION['payment_complete'])) {
+    header("Location: main_course.html");
+    exit();
+}
+
 $key_id = "rzp_test_2RnEXCgLi65umH"; // Razorpay Test Key ID
 
 // Fetch user details from session after registration
@@ -16,7 +23,6 @@ $email = isset($_SESSION['email']) ? $_SESSION['email'] : '';
   <link rel="shortcut icon" href="https://www.freepnglogos.com/uploads/warriors-png-logo/reclaiming-warrior-png-logo-10.png" type="image/x-icon" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
   <style>
-    /* Same styling preserved */
     * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
     body {
       background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
@@ -135,10 +141,27 @@ function payNow() {
     "description": "Cybersecurity Masterclass Enrollment",
     "image": "https://www.freepnglogos.com/uploads/warriors-png-logo/reclaiming-warrior-png-logo-10.png",
     "handler": function (response){
+      // Show success message
       alert("✅ Payment Success! \nPayment ID: " + response.razorpay_payment_id);
+      
+      // Submit payment data via AJAX
       var xhr = new XMLHttpRequest();
       xhr.open("POST", "payment-success.php", true);
       xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+      xhr.onload = function() {
+        if (this.status == 200) {
+          // After successful AJAX call, redirect to main course
+          window.location.href = "main_course.php";
+        } else {
+          alert("Redirecting to the course......");
+          window.location.href = "main_course.php";
+        }
+      };
+      xhr.onerror = function() {
+        // Even if AJAX fails, still redirect but show message
+        alert("Payment successful but record may not be saved. Please contact support with your payment ID: " + response.razorpay_payment_id);
+        window.location.href = "main_course.html";
+      };
       xhr.send("payment_id=" + response.razorpay_payment_id + "&name=" + encodeURIComponent(name) + "&email=" + encodeURIComponent(email) + "&contact=" + encodeURIComponent(contactWithCode) + "&amount=" + amount);
     },
     "prefill": {
