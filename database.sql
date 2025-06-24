@@ -9,6 +9,8 @@ CREATE TABLE users (
     password VARCHAR(255),
     google_id VARCHAR(255) UNIQUE,
     otp INT,
+    phone VARCHAR(10),
+    dob DATE,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 

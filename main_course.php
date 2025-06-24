@@ -8,11 +8,13 @@ $payment_id = $_SESSION['payment_id'];
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+<link rel="icon" type="image/png" sizes="32x32" href="https://www.freepnglogos.com/uploads/warriors-png-logo/reclaiming-warrior-png-logo-10.png">
+<link rel="shortcut icon" href="https://www.freepnglogos.com/uploads/warriors-png-logo/reclaiming-warrior-png-logo-10.png">
+   <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Access cybersecurity tutorials, videos, and resources - CyberLearn Platform">
     <meta name="keywords" content="cybersecurity, ethical hacking, network security, online learning">
-	<link rel="shortcut icon" href="https://www.freepnglogos.com/uploads/warriors-png-logo/reclaiming-warrior-png-logo-10.png" type="image/x-icon" />    
+	  
 	<title>Cybersecurity Master Class| Reclaiming Warrior</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -667,7 +669,7 @@ $payment_id = $_SESSION['payment_id'];
                         <button id="mobileSidebarToggle" class="navbar-toggler me-2" aria-label="Toggle navigation">
                             <i class="fas fa-bars"></i>
                         </button>
-                        <a href="" class="app-logo">RECLAIMING WARRIOR</a>
+                        <a href="http://localhost/Final_Reclaiming_Warrior_Complete/course.html" class="app-logo">RECLAIMING WARRIOR</a>
                     </div>
                     <div class="header-actions">
                         <button id="themeToggle" class="theme-toggle" aria-label="Toggle dark mode">
@@ -684,7 +686,7 @@ $payment_id = $_SESSION['payment_id'];
         <!-- Sidebar -->
         <aside id="sidebar" class="sidebar">
             <div class="sidebar-header">
-                <a href="" class="sidebar-logo">
+                <a href="http://localhost/Final_Reclaiming_Warrior_Complete/course.html" class="sidebar-logo">
                     <span class="sidebar-logo-text">RECLAIMING WARRIOR</span>
                 </a>
                 <button id="toggleSidebar" class="sidebar-toggle" aria-label="Toggle sidebar">
